@@ -3,6 +3,7 @@ package com.example.patent.entity;
 import lombok.Data;
 
 import java.util.Date;
+
 @Data
 public class PHandIn {
 
@@ -22,6 +23,7 @@ public class PHandIn {
   private long handInProcess;
   private String pTSId;
   private long pTSEndId;
-
+  private String supervisorOpinion;
+  private String technicalPersonOpinion;
 
 }
