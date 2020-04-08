@@ -88,6 +88,8 @@ layui.use(['layer', 'form', 'element', 'jquery', 'dialog'], function() {
 		mainLayout.removeClass('hide-side');
 	})
 
+
+
 	//示范一个公告层
 	// layer.open({
 	// 	  type: 1

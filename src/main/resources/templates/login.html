@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: head"></head>
+<link rel="stylesheet" th:href="@{mine/css/login.css}">
+
+<body>
+<header>
+    <div class="header">
+        <div>后台专利管理系统</div>
+        <ul class="layui-nav" lay-filter="top">
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-text="login">登录</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-text="regist">注册</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="conent">
+    <div class="login" id="container" style="display: none;">
+        <div class="head" id="title">
+            登录
+        </div>
+        <div class="body">
+            <div class="center">
+                <form id="loginForm" class="form-horizontal">
+                    <input type="reset" name="reset" style="display: none;">
+                    <div class="form-group">
+                        <label for="username" class="col-sm-3 control-label">用户名:</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="username" placeholder="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">密码:</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="password" placeholder="password">
+                        </div>
+                    </div>
+                    <div class="form-group" id="regist" style="display: none;">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="captcha" class="col-sm-3 control-label">验证码:</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="captcha" placeholder="captcha">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="foot">
+            <button type="button" id="btn" class="layui-btn layui-btn-fluid">登录</button>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <p>如果有什么需要请技术联系，我们24在哦 `</p>
+    <p>电话:15010974704</p>
+    <p>邮箱:yi495210623@gmail.com</p>
+</footer>
+
+<script type="text/javascript" th:src="@{mine/js/login.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+ul,
+nav {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    background-color: #393D49;
+    line-height: 80px;
+    padding: 0 0 0 100px;
+    color: whitesmoke;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.header div {
+    font-size: 30px;
+}
+
+.header ul {
+    display: flex;
+    margin-right: 200px;
+}
+
+.header ul li {
+    margin: 0 15px;
+}
+
+.header ul li a {
+    color: white;
+    padding-top: 30px;
+    margin-top: 10px;
+}
+
+.header ul li a:hover {
+    color: wheat;
+}
+
+.conent {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/login-background-image.jpg);
+    background-size: cover;
+}
+
+.conent .login {
+    position: relative;
+    margin-left: 65%;
+    top: 100px;
+    width: 500px;
+    background-color: whitesmoke;
+    opacity: .5;
+    border-radius: 5px;
+}
+
+.conent .login .head {
+    width: 100%;
+    height: 50px;
+    background-color: #393D49;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 23px;
+    border-radius: 5px;
+}
+
+.conent .login .body .center {
+    margin-top: 50px;
+}
+
+.conent .login .foot {
+    text-align: center;
+    margin-top: 30px;
+}
+
+@keyframes layui-scale-spring {
+    0% {
+        opacity: .2;
+        transform: scale(.5)
+    }
+
+    80% {
+        opacity: .4;
+        transform: scale(1.1)
+    }
+
+    100% {
+        opacity: .6;
+        transform: scale(1)
+    }
+
+}
+
+@keyframes layui-fadein {
+    0% {
+        opacity: .2;
+        transform: scale(.5)
+    }
+
+    80% {
+        opacity: .4;
+        transform: scale(1.1)
+    }
+
+    100% {
+        opacity: .6;
+        transform: scale(1)
+    }
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 120px;
+    background-color: #393D49;
+    color: white;
+    text-align: center;
+    padding: 20px 0 0 0;
+}
