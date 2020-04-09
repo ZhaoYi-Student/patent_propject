@@ -6,7 +6,7 @@
     <!--登录Sql-->
     <select id="PUserLogin" resultType="com.example.patent.entity.PUser">
 
-        select * from p_user where user_name = #{userName} and user_pwd = #{serPwd};
+        select * from p_user where user_name = #{userName} and user_pwd = #{userPwd};
 
     </select>
 
