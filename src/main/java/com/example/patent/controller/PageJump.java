@@ -11,6 +11,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PageJump {
 
+    @RequestMapping("login")
+    public String login(){
+        return "login";
+    }
+
     @RequestMapping("index")
     public String index(){
         return "index";
@@ -20,5 +25,6 @@ public class PageJump {
     public String welcome(){
         return "welcome";
     }
+
 
 }

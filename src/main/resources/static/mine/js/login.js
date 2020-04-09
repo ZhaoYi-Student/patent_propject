@@ -34,6 +34,11 @@ layui.use(['element'], function () {
 
     });
 
+    $("#btn").on('click',function(){
+        var btnHtml = $("#btn").html();
+        console.log(btnHtml);
+    })
+
 
 
 });
