@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("UserCon")
 public class UserController {
 
     /*自动注入Service*/
