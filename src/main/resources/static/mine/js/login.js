@@ -38,7 +38,7 @@ layui.use(['element'], function () {
         var btnHtml = $("#btn").html();
         if (btnHtml === "登录") {
             $.post({
-                url: "UserCon/login",
+                url: "/UserCon/login",
                 data: $("#loginForm").serialize(),
                 success: function (data) {
                     console.log(data);
