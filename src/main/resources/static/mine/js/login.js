@@ -36,6 +36,7 @@ layui.use(['element'], function () {
 
     $("#btn").on('click', function () {
         var btnHtml = $("#btn").html();
+        $("#btn").attr("disabled", "disabled");
         if (btnHtml === "登录") {
             $.post({
                 url: "/UserCon/login",
@@ -44,8 +45,9 @@ layui.use(['element'], function () {
                     console.log(data);
                     if (data) {
                         window.location.href = "index";
-                    }else{
+                    } else {
                         alert("用户名或密码错误");
+                        $("#btn").removeAttr("disabled");
                     }
                 }
             }, "json");

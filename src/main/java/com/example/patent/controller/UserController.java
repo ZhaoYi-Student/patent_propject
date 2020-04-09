@@ -26,7 +26,7 @@ public class UserController {
         /*判断对象是否为空  */
         if (user != null) {
             /*存进Session中*/
-            session.setAttribute("UserLogin", user);
+            session.setAttribute("userInfo", user);
             return true;
         } else {
             return false;

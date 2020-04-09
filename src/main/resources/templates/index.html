@@ -30,7 +30,7 @@
     <!--右侧内容-->
     <div class="main-layout-container">
         <!--头部-->
-        <div class="main-layout-header">
+        <div class="main-layout-header" style="background-color:#393D49;">
             <div class="menu-btn" id="hideBtn">
                 <a href="javascript:;">
                     <span class="iconfont">&#xe60e;</span>
@@ -40,7 +40,7 @@
                 <li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4'
                                               data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">系统管理员</a>
+                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息" th:text="${session.userInfo.getRealName()}">系统管理员</a>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;">退出</a></li>
             </ul>
