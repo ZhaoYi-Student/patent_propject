@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.patent.mapper.PUserMapper">
+
+
+    <!--登录Sql-->
+    <select id="PUserLogin" resultType="com.example.patent.entity.PUser">
+
+        select * from p_user where user_name = #{userName} and user_pwd = #{serPwd};
+
+    </select>
+
+
+</mapper>

@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/patent?serverTimezone=UTC&characterEncoding=utf8
+    url: jdbc:mysql://119.3.160.68:3306/patent?serverTimezone=UTC&characterEncoding=utf8
     username: hive
     password: hive
   mvc:
