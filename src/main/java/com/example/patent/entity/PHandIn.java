@@ -18,7 +18,6 @@ public class PHandIn {
   private Date handInTime;
   private long handInImportanceLevel;
   private long handInApplicant;
-  private long deptId;
   private String handInFrequency;
   private long handInProcess;
   private String pTSId;

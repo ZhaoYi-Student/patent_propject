@@ -10,5 +10,6 @@ public class PUser {
   private String realName;
   private String userPwd;
   private long level;
+  private long deptId;
 
 }
