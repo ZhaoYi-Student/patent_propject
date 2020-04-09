@@ -18,18 +18,20 @@ public class UserController {
 
     /*登录Controller*/
     @RequestMapping("login")
-    public PUser login(PUser pUser, HttpSession session){
+    public Boolean login(PUser pUser, HttpSession session) {
 
         /*调用业务逻辑*/
         PUser user = pUserService.PUserLogin(pUser);
 
         /*判断对象是否为空  */
-        if(user!=null){
+        if (user != null) {
             /*存进Session中*/
-            session.setAttribute("UserLogin",user);
+            session.setAttribute("UserLogin", user);
+            return true;
+        } else {
+            return false;
         }
 
-        return user;
     }
 
 }
