@@ -35,9 +35,10 @@ layui.use(['element'], function () {
     });
 
     $("#btn").on('click', function () {
-        var btnHtml = $("#btn").html();
         $("#btn").attr("disabled", "disabled");
-        if (btnHtml === "登录") {
+        var btnHtml = $("#btn").attr("data-value");
+        console.log(btnHtml);
+        if (btnHtml === "1") {
             $.post({
                 url: "/UserCon/login",
                 data: $("#loginForm").serialize(),

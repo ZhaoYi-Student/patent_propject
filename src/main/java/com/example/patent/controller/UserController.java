@@ -22,7 +22,6 @@ public class UserController {
 
         /*调用业务逻辑*/
         PUser user = pUserService.PUserLogin(pUser);
-
         /*判断对象是否为空  */
         if (user != null) {
             /*存进Session中*/
