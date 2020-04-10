@@ -2,6 +2,112 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head"></head>
 <body>
-
+<div class="col-sm-12" style="padding: 30px 0 20px 0">
+    <form class="form-horizontal">
+        <div class="form-group col-sm-3">
+            <label for="patent_name" class="control-label col-sm-4">专利名称：</label>
+            <div class="col-sm-8">
+                <input type="text" id="patent_name" name="patentName" placeholder="专利名称" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="inventor_name" class="control-label col-sm-4">申请人：</label>
+            <div class="col-sm-8">
+                <input type="text" id="inventor_name" name="inventorName" placeholder="申请人" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="auditor_name" class="control-label col-sm-4">发明人：</label>
+            <div class="col-sm-8">
+                <input type="text" id="auditor_name" name="auditorName" placeholder="发明人" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="dept_name" class="control-label col-sm-4">部门：</label>
+            <div class="col-sm-8">
+                <select name="deptName" id="dept_name" class="form-control">
+                    <options></options>
+                </select>
+            </div>
+        </div>
+        <div class=""></div>
+        <div class="col-sm-12" style="margin-top: 20px;">
+            <button class="layui-btn layui-btn-fluid" style="margin: auto;" type="button">查询</button>
+        </div>
+    </form>
+</div>
+<div class="col-sm-12">
+    <div class="col-sm-1" style="padding: 0 0 10px 0">
+        <button id="addHandIn" class="layui-btn layui-btn-primary layui-btn-fluid">新建交底书</button>
+    </div>
+</div>
+<div id="addHandInPage" class="modal fade">
+    <form id="addHandInForm" class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">新建交底书</h4>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="hand_in_name" class="control-label col-sm-3">交底书名称:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="hand_in_name" name="handInName" class="form-control" required
+                                   lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hand_in_no" class="control-label col-sm-3">编号:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="hand_in_no" name="handInNo" class="form-control" required
+                                   lay-verify="required" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hand_in_inventor" class="control-label col-sm-3">发明人:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="hand_in_inventor" name="handInInventor" class="form-control"
+                                   required lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="file" class="control-label col-sm-3">文件:</label>
+                        <div class="col-sm-8">
+                            <label for="file">
+                                <img th:src="@{mine/images/document_upload.png}" alt=""
+                                     style="width: 40px;cursor: pointer;">
+                            </label>
+                            <input type="file" id="file" name="file" required lay-verify="required"
+                                   style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" style="display: none;">重置</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div></div>
+<div class="col-sm-12">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>11</th>
+            <th>22</th>
+            <th>33</th>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>222</td>
+            <td>333</td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" th:src="@{mine/js/page.js}"></script>
 </body>
 </html>

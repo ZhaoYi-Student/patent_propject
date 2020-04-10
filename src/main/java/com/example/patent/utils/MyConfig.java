@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-@Configuration
+//@Configuration
 public class MyConfig extends WebMvcConfigurationSupport {
 
     @Override
