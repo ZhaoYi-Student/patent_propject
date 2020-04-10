@@ -22,8 +22,7 @@ public class MyConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {  // 添加拦截器
         // 定义要拦截和放行的请求、资源
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/login");
-        System.out.println("1234---");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/static");
         super.addInterceptors(registry);
     }
 
