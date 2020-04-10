@@ -26,5 +26,15 @@ public class PageJump {
         return "welcome";
     }
 
+    @RequestMapping("page_1")
+    public String page_1(){
+        return "page/page_1";
+    }
+
+    @RequestMapping("add_hand_in")
+    public String add_hand_in(){
+        return "page/add_hand_in";
+    }
+
 
 }
