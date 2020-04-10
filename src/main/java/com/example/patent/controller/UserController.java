@@ -20,14 +20,17 @@ public class UserController {
 
     /*注销用户*/
     @RequestMapping("Sessionlogout")
-    public boolean Sessionlogout(HttpSession session){
+    public boolean Sessionlogout(HttpSession session) {
 
         //判断如果session中有数据 就清除
-        if(session.getAttribute("userInfo")!=null){
+        try {
             session.removeAttribute("userInfo");
             return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        return false;
+
     }
 
 

@@ -44,12 +44,13 @@ layui.use(['layer', 'form', 'element', 'jquery', 'dialog'], function() {
 		var id = navA.attr('data-id');
 		var url = navA.attr('data-url');
 		var text = navA.attr('data-text');
+		console.log(text);
 		if (text==="sign_out"){
 			$.post({
-				url:"realUser/signOut",
+				url:"UserCon/Sessionlogout",
 				success:function(data){
 					if(data){
-						window.location.href = "back_signIn";
+						window.location.href = "login";
 					}else{
 						alert("系统繁忙");
 					}
