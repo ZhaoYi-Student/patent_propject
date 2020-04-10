@@ -4,6 +4,7 @@ import com.example.patent.entity.PUser;
 import com.example.patent.service.PUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,19 @@ public class UserController {
     /*自动注入Service*/
     @Autowired
     private PUserService pUserService;
+
+
+    /*注销用户*/
+    @RequestMapping("Sessionlogout")
+    public boolean Sessionlogout(HttpSession session){
+
+        //判断如果session中有数据 就清除
+        if(session.getAttribute("userInfo")!=null){
+            session.removeAttribute("userInfo");
+        }
+        return true;
+    }
+
 
     /*登录Controller*/
     @RequestMapping("login")
