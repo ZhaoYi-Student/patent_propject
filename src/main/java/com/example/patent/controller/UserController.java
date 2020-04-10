@@ -25,8 +25,9 @@ public class UserController {
         //判断如果session中有数据 就清除
         if(session.getAttribute("userInfo")!=null){
             session.removeAttribute("userInfo");
+            return true;
         }
-        return true;
+        return false;
     }
 
 
