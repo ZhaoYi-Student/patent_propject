@@ -7,7 +7,7 @@ spring:
     username: hive
     password: hive
   mvc:
-    static-path-pattern: /**
+    static-path-pattern: /static/**
 mybatis:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.example.patent.entity
