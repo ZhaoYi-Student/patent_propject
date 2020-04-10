@@ -113,7 +113,7 @@ layui.use(['element'], function () {
                                 $("#btn").removeAttr("disabled");
                             }
                         }
-                    }, "json");
+                    }, "json")
                 }
             } else {
                 alert('验证失败')
