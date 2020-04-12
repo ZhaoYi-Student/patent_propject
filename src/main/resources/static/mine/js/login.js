@@ -42,7 +42,6 @@ layui.use(['element', 'layer'], function () {
     var input = document.getElementById("captcha");//获取输入框
     draw();
     canvas.onclick = function () {
-        context.clearRect(0, 0, 120, 40);//在给定的矩形内清除指定的像素
         draw();
     };
 
@@ -54,13 +53,15 @@ layui.use(['element', 'layer'], function () {
         return "rgb(" + r + "," + g + "," + b + ")";
     }
 
+    var num;
+
     function draw() {
-        context.clearRect(0, 0, 120, 40);
+        context.clearRect(0, 0, 120, 40);//在给定的矩形内清除指定的像素
         context.strokeRect(0, 0, 120, 40);//绘制矩形（无填充）
         var aCode = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
         // 绘制字母
         var arr = [];//定义一个数组用来接收产生的随机数
-        var num;//定义容器接收验证码
+        // var num;//定义容器接收验证码
         for (var i = 0; i < 4; i++) {
             var x = 20 + i * 20;//每个字母之间间隔20
             var y = 20 + 10 * Math.random();//y轴方向位置为20-30随机
@@ -95,35 +96,35 @@ layui.use(['element', 'layer'], function () {
             context.strokeStyle = getColor();
             context.stroke();
         }
-
-        $("#btn").on('click', function () {
-            var text = $("#captcha").val();//获取输入框的值
-            if (text === num) {
-                $("#btn").attr("disabled", "disabled");
-                var btnHtml = $("#btn").attr("data-value");
-                if (btnHtml === "1") {
-                    $.post({
-                        url: "/UserCon/login",
-                        data: $("#loginForm").serialize(),
-                        success: function (data) {
-                            console.log(data);
-                            if (data) {
-                                window.location.href = "index";
-                            } else {
-                                layer.msg("用户名或密码错误");
-                                $("#btn").removeAttr("disabled");
-                                $("input[name=reset]").trigger('click');
-                            }
-                        }
-                    }, "json")
-                }
-            } else {
-                layer.msg("验证码有误");
-                draw();
-            }
-
-        })
     }
+
+    $("#btn").on('click', function () {
+        var text = $("#captcha").val();//获取输入框的值
+        if (text === num) {
+            $("#btn").attr("disabled", "disabled");
+            var btnHtml = $("#btn").attr("data-value");
+            if (btnHtml === "1") {
+                $.post({
+                    url: "/UserCon/login",
+                    data: $("#loginForm").serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        if (data) {
+                            window.location.href = "index";
+                        } else {
+                            layer.msg("用户名或密码错误");
+                            $("#btn").removeAttr("disabled");
+                            $("input[name=reset]").trigger('click');
+                        }
+                    }
+                }, "json")
+            }
+        } else {
+            layer.msg("验证码有误");
+            draw();
+        }
+
+    })
 
 });
 

@@ -26,11 +26,6 @@
             <label for="dept_name" class="control-label col-sm-4">部门：</label>
             <div class="col-sm-8">
                 <select name="deptName" id="dept_name" class="form-control">
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="4">C</option>
-                    <option value="5">D</option>
-                    <option value="6">E</option>
                 </select>
             </div>
         </div>
@@ -113,5 +108,31 @@
     </table>
 </div>
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
+<script>
+
+    /*页面初始化加载*/
+    $(function () {
+        /*调用查询部门列表方法*/
+        ShowAllDept();
+    })
+
+    /* 查询部门表所有信息*/
+    function ShowAllDept() {
+        $.ajax({
+            url:"/DeptCon/ShowDeptName",
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                if(data!=null){
+                    for(var i=0;i<data.length;i++){
+                        $("#dept_name").append("<option value='"+data[i].id+"'>"+data[i].deptName+"</option>")
+                    }
+                }
+            }
+
+        })
+    }
+
+</script>
 </body>
 </html>
