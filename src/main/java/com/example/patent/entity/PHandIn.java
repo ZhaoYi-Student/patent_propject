@@ -24,5 +24,6 @@ public class PHandIn {
   private long pTSEndId;
   private String supervisorOpinion;
   private String technicalPersonOpinion;
+  private long deptId;
 
 }

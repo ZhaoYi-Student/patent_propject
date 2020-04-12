@@ -5,30 +5,58 @@ layui.use(['layer', 'form', 'element'], function () {
     var addHandIn = $("#addHandIn");
     var file = $('#file');
     var handInNo = $("input[name=handInNo]");
+    var deptName = $("#dept_name");
+    var deptName2 = $("#dept_name2");
+    var hand_in_name = $("#hand_in_name");
+
+    ShowAllDept();
+
+    /* 查询部门表所有信息*/
+    function ShowAllDept() {
+        $.ajax({
+            url: "/DeptCon/ShowDeptName",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        deptName.append("<option value='" + data[i].id + "'>" + data[i].deptName + "</option>");
+                        deptName2.append("<option value='" + data[i].id + "'>" + data[i].deptName + "</option>");
+                    }
+                }
+            }
+
+        })
+    }
+
     addHandIn.on('click', function () {
         $("#addHandInPage").modal("show");
         $.post({
-            url:"untils/getOrderIdByUUId",
-            success:function (data) {
+            url: "untils/getOrderIdByUUId",
+            success: function (data) {
                 handInNo.val(data);
             }
-        },"json");
+        }, "json");
     });
+
     form.on('submit(formDemo)', function () {
         var fileObject = file.get(0).files[0];
-        if (file) {
+        if (fileObject) {
             // $("#fileLabel").html("<span style='cursor:pointer;'>"+fileList.name+"</span>");
             $.post({
-                url:"",
-                data:$("#addHandInForm").serialize(),
-                success:function(data){
+                url: "p_hand_in/addHandIn",
+                data: $("#addHandInForm").serialize(),
+                success: function (data) {
                     console.log(data);
+                    if (data){
+                        layer.msg("提交成功")
+                    }
                 }
-            },'json');
+            }, 'json');
         } else {
             layer.msg("请选择上传文件！");
         }
-    })
+    });
 
     file.on('change', function () {
         var fileObject = file.get(0).files[0];

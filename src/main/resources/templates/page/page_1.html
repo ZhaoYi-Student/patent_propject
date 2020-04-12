@@ -25,7 +25,7 @@
         <div class="form-group col-sm-3">
             <label for="dept_name" class="control-label col-sm-4">部门：</label>
             <div class="col-sm-8">
-                <select name="deptName" id="dept_name" class="form-control">
+                <select name="deptId" id="dept_name" class="form-control">
                 </select>
             </div>
         </div>
@@ -51,6 +51,10 @@
                     </h4>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" name="handInApplicant" th:value="${session.userInfo.getId()}">
+                    <input type="hidden" name="handInFrequency" value="1">
+                    <input type="hidden" name="handInProcess" value="1">
+                    <input type="hidden" name="handInAuditStatus" value="0">
                     <div class="form-group">
                         <label for="hand_in_name" class="control-label col-sm-3">交底书名称:</label>
                         <div class="col-sm-8">
@@ -70,6 +74,13 @@
                         <div class="col-sm-8">
                             <input type="text" id="hand_in_inventor" name="handInInventor" class="form-control"
                                    required lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dept_name" class="control-label col-sm-3">部门：</label>
+                        <div class="col-sm-8">
+                            <select name="deptId" id="dept_name2" class="form-control">
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,31 +119,5 @@
     </table>
 </div>
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
-<script>
-
-    /*页面初始化加载*/
-    $(function () {
-        /*调用查询部门列表方法*/
-        ShowAllDept();
-    })
-
-    /* 查询部门表所有信息*/
-    function ShowAllDept() {
-        $.ajax({
-            url:"/DeptCon/ShowDeptName",
-            type:"get",
-            dataType:"json",
-            success:function (data) {
-                if(data!=null){
-                    for(var i=0;i<data.length;i++){
-                        $("#dept_name").append("<option value='"+data[i].id+"'>"+data[i].deptName+"</option>")
-                    }
-                }
-            }
-
-        })
-    }
-
-</script>
 </body>
 </html>

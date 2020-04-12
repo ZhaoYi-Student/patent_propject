@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.patent.mapper.PHandInMapper">
+
+    <insert id="addHandIn">
+        insert into p_hand_in
+        (hand_in_name, hand_in_inventor, hand_in_no,hand_in_audit_status, hand_in_time,
+        hand_in_applicant, hand_in_frequency, hand_in_process,dept_id)
+        values
+        (#{handInName},#{handInInventor},#{handInNo},#{handInAuditStatus},#{handInTime},
+        #{handInApplicant},#{handInFrequency},#{handInProcess},#{deptId})
+    </insert>
+
+</mapper>
