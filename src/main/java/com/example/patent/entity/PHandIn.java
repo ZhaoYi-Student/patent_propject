@@ -1,6 +1,8 @@
 package com.example.patent.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,6 +17,8 @@ public class PHandIn {
   private String handInAuditor;
   private String handInAuditInformation;
   private long handInAuditStatus;
+  @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
+  @JsonFormat(pattern = "yyyy-MM-dd") //出参
   private Date handInTime;
   private long handInImportanceLevel;
   private long handInApplicant;
@@ -25,5 +29,7 @@ public class PHandIn {
   private String supervisorOpinion;
   private String technicalPersonOpinion;
   private long deptId;
+  private PDept pDept;
+  private PUser pUser;
 
 }

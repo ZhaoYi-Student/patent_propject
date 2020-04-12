@@ -5,12 +5,14 @@ layui.use(['layer', 'form', 'element'], function () {
     var addHandIn = $("#addHandIn");
     var file = $('#file');
     var handInNo = $("input[name=handInNo]");
-    var deptName = $("#dept_name");
+    var deptName1 = $("#dept_name1");
     var deptName2 = $("#dept_name2");
     var hand_in_name = $("#hand_in_name");
     var reset = $("#reset");
 
     ShowAllDept();
+
+
 
     /* 查询部门表所有信息*/
     function ShowAllDept() {
@@ -21,7 +23,7 @@ layui.use(['layer', 'form', 'element'], function () {
             success: function (data) {
                 if (data != null) {
                     for (var i = 0; i < data.length; i++) {
-                        deptName.append("<option value='" + data[i].id + "'>" + data[i].deptName + "</option>");
+                        deptName1.append("<option value='" + data[i].id + "'>" + data[i].deptName + "</option>");
                         deptName2.append("<option value='" + data[i].id + "'>" + data[i].deptName + "</option>");
                     }
                 }
@@ -65,6 +67,9 @@ layui.use(['layer', 'form', 'element'], function () {
         $("#fileLabel").html("<span style='cursor:pointer;'>" + fileObject.name + "</span>");
     })
 });
+
+
+
 
 
 
