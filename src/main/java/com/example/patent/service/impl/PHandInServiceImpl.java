@@ -16,12 +16,13 @@ public class PHandInServiceImpl implements PHandInService {
 
     @Override
     public Boolean addHandIn(PHandIn pHandIn) {
-        System.out.println(pHandIn);
         try {
+            pHandIn.setHandInFrequency("1");
+            pHandIn.setHandInProcess(1);
+            pHandIn.setHandInAuditStatus(0);
             pHandIn.setHandInTime(new Date());
             int i = pHandInMapper.addHandIn(pHandIn);
-            System.out.println(i);
-            if (i != 0) {
+            if (i == 1) {
                 return true;
             } else {
                 return false;

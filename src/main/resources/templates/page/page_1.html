@@ -51,10 +51,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="handInApplicant" th:value="${session.userInfo.getId()}">
-                    <input type="hidden" name="handInFrequency" value="1">
-                    <input type="hidden" name="handInProcess" value="1">
-                    <input type="hidden" name="handInAuditStatus" value="0">
+                    <input type="reset" id="reset" style="display: none">
                     <div class="form-group">
                         <label for="hand_in_name" class="control-label col-sm-3">交底书名称:</label>
                         <div class="col-sm-8">

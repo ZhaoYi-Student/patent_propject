@@ -8,6 +8,7 @@ layui.use(['layer', 'form', 'element'], function () {
     var deptName = $("#dept_name");
     var deptName2 = $("#dept_name2");
     var hand_in_name = $("#hand_in_name");
+    var reset = $("#reset");
 
     ShowAllDept();
 
@@ -48,8 +49,9 @@ layui.use(['layer', 'form', 'element'], function () {
                 data: $("#addHandInForm").serialize(),
                 success: function (data) {
                     console.log(data);
-                    if (data){
-                        layer.msg("提交成功")
+                    if (data) {
+                        reset.trigger('click');
+                        alert("提交成功");
                     }
                 }
             }, 'json');

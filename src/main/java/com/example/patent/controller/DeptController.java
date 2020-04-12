@@ -24,11 +24,6 @@ public class DeptController {
     public List<PDept> ShowDeptName(){
 
         List<PDept> list= pDeptService.ShowDeptName();
-        for (PDept l:list
-             ) {
-            System.out.println(l);
-
-        }
 
         return pDeptService.ShowDeptName();
     }
