@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: head"></head>
+<link rel="stylesheet" th:href="@{/static/mine/error/error.css}">
+<body>
+<div class="error">
+    <div class="errorInfo">500 你的操作出现一些问题!
+        <div class="table-error">
+            <table class="table table-bordered table-striped text-left">
+                <tr>
+                    <th>状态</th>
+                    <th>信息</th>
+                </tr>
+                <tr>
+                    <td>custommsg</td>
+                    <td th:text="${custommsg}"></td>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td th:text="${status}"></td>
+                </tr>
+                <tr>
+                    <td>message</td>
+                    <td th:text="${message}"></td>
+                </tr>
+                <tr>
+                    <td>path</td>
+                    <td th:text="${path}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
