@@ -20,3 +20,6 @@ layui.use(['layer', 'form', 'element'], function () {
         $("#fileLabel").html("<span style='cursor:pointer;'>" + fileObject.name + "</span>");
     })
 });
+
+
+

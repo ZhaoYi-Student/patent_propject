@@ -25,13 +25,7 @@
         <div class="form-group col-sm-3">
             <label for="dept_name" class="control-label col-sm-4">部门：</label>
             <div class="col-sm-8">
-                <select name="deptName" id="dept_name" class="form-control">
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="4">C</option>
-                    <option value="5">D</option>
-                    <option value="6">E</option>
-                </select>
+                <select name="deptName" id="dept_name" class="form-control"></select>
             </div>
         </div>
         <div class=""></div>
@@ -113,5 +107,29 @@
     </table>
 </div>
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
+<script>
+    /*初始化加载*/
+    $(function () {
+        //加载所有部门Dept
+        ShowDept();
+
+    })
+
+    /*查看所有部门*/
+    function ShowDept() {
+        $.ajax({
+            url:"/DeptCon/ShowDeptName",
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                if(data!=null){
+                    for(var i=0;i<data.length;i++){
+                        $("#dept_name").append("<option value='"+data[i].id+"'>"+data[i].deptName+"</option>")
+                    }
+                }
+            }
+        })
+    }
+</script>
 </body>
 </html>
