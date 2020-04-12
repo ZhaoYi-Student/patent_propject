@@ -14,7 +14,6 @@ layui.use(['layer', 'form', 'element'], function () {
             }
         },"json");
     });
-
     form.on('submit(formDemo)', function () {
         var fileObject = file.get(0).files[0];
         if (file) {
@@ -23,7 +22,7 @@ layui.use(['layer', 'form', 'element'], function () {
                 url:"",
                 data:$("#addHandInForm").serialize(),
                 success:function(data){
-
+                    console.log(data);
                 }
             },'json');
         } else {
