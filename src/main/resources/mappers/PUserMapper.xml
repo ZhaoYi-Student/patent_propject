@@ -12,5 +12,11 @@
 
     </select>
 
+    <select id="findUserById" resultType="com.example.patent.entity.PUser">
+        select id, user_name as 'userName', real_name as 'realName', level as 'level', dept_id as 'deptId'
+        from p_user
+        where id=#{id}
+    </select>
+
 
 </mapper>

@@ -2,8 +2,10 @@ package com.example.patent.service.impl;
 
 import com.example.patent.entity.PDept;
 import com.example.patent.entity.PHandIn;
+import com.example.patent.entity.PUser;
 import com.example.patent.mapper.PDeptMapper;
 import com.example.patent.mapper.PHandInMapper;
+import com.example.patent.mapper.PUserMapper;
 import com.example.patent.service.PHandInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class PHandInServiceImpl implements PHandInService {
     private PHandInMapper pHandInMapper;
     @Autowired
     private PDeptMapper pDeptMapper;
+    @Autowired
+    private PUserMapper pUserMapper;
 
     @Override
     public Boolean addHandIn(PHandIn pHandIn) {
@@ -44,8 +48,11 @@ public class PHandInServiceImpl implements PHandInService {
         for (PHandIn p : pHandIns
         ) {
             PDept deptById = pDeptMapper.findDeptById(p.getDeptId());
+            PUser userById = pUserMapper.findUserById(p.getHandInApplicant());
             p.setPDept(deptById);
+            p.setPUser(userById);
         }
+        System.out.println(pHandIns);
         return pHandIns;
     }
 }

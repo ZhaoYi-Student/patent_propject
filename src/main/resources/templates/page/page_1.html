@@ -142,20 +142,16 @@
                 {field: "handInName", title: "专利名称", align: "center"},
                 {field: "handInFrequency", title: "申请文件数", align: "center"},
                 {field: "handInInventor", title: "发明人", align: "center"},
-                {field: "userName", title: "申请人", align: "center"},
-                {field: "deptName", title: "部门", align: "center"},
+                {field: "pUser.RealName", title: "申请人", align: "center"},
+                {field: "pDept.deptName", title: "部门", align: "center"},
                 {field: "handInTime", title: "申请时间", align: "center"},
                 {field: "handInAuditStatus", title: "目前状态", align: "center"},
-                {field:"",title:"操作",align :"center",
+                {
+                    field: "", title: "操作", align: "center",
                     formatter: function (value, row, index) {
-                        if(row.handInAuditStatus==0){
-                            return "<a href='javaScript:Weiqianpi("+row.id+")'>审核</a>";
-                        }else if(row.handInAuditStatus==1){
-                            return "<a href='javaScript:Weiqianpi("+row.id+")'>查看</a>";
-                        }else {
-                            return "<a href='javaScript:Weiqianpi("+row.id+")'>被驳回</a>";
-                        }
-                    }}
+                        return "<a href='javaScript:Weiqianpi(" + row.id + ")'>查看</a>";
+                    }
+                }
 
             ],
             queryParams: function (params) {
