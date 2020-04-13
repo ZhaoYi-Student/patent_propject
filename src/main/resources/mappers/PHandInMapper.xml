@@ -24,20 +24,25 @@
         dept_id as 'deptId'
         from p_hand_in
         <where>
+            1=1
             <if test="handInName != null and handInName != '' ">
-                and hand_in_name = #{handInName}
+                and hand_in_name like concat('%', #{handInName} ,'%')
             </if>
 
             <if test="handInInventor != null and handInInventor != '' ">
-                and hand_in_inventor = #{handInInventor}
+                and hand_in_inventor like concat('%', #{handInInventor} ,'%')
             </if>
 
             <if test="handInApplicant != 0 ">
-                and hand_in_applicant = #{handInApplicant}
+                and hand_in_applicant like concat('%', #{handInApplicant} ,'%')
             </if>
 
             <if test="deptId != 0 ">
-                and dept_id = #{deptId}
+                and dept_id like concat('%', #{deptId} ,'%')
+            </if>
+
+            <if test="handInAuditStatus != null and handInAuditStatus != '' ">
+                and hand_in_inventor = #{handInAuditStatus}
             </if>
 
         </where>

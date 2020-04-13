@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.patent.mapper.PDeptMapper">
+
+    <!--查找所有部门-->
+    <select id="ShowDeptName" resultType="com.example.patent.entity.PDept">
+        select
+            id,
+             dept_name as 'deptName',
+               dept_information as 'deptInformation',
+                 dept_createtime as 'deptCreatetime'
+                    from p_dept
+
+    </select>
+
+    <select id="findDeptById" resultType="com.example.patent.entity.PDept">
+        select
+            id as 'id',
+            dept_name as 'deptName',
+            dept_information as 'deptInformation',
+            dept_createtime as 'deptCreatetime'
+            from p_dept
+            where id = #{deptId}
+    </select>
+
+
+</mapper>
