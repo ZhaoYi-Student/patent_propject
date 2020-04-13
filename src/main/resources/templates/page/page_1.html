@@ -3,35 +3,37 @@
 <head th:replace="header :: head"></head>
 <body>
 <div class="col-sm-12" style="padding: 30px 0 20px 0">
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="selectItem">
         <div class="form-group col-sm-3">
-            <label for="patent_name" class="control-label col-sm-4">专利名称：</label>
+            <label for="hand_in_name1" class="control-label col-sm-4">专利名称：</label>
             <div class="col-sm-8">
-                <input type="text" id="patent_name" name="patentName" placeholder="专利名称" class="form-control">
+                <input type="text" id="hand_in_name1" name="handInName" placeholder="专利名称" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-3" style="display:none">
+            <label for="hand_in_applicant" class="control-label col-sm-4">申请人：</label>
+            <div class="col-sm-8">
+                <input type="hidden" id="hand_in_applicant" name="handInApplicant" placeholder="申请人"
+                       class="form-control" th:value="${session.userInfo.getId()}">
             </div>
         </div>
         <div class="form-group col-sm-3">
-            <label for="inventor_name" class="control-label col-sm-4">申请人：</label>
+            <label for="inventor_name" class="control-label col-sm-4">发明人：</label>
             <div class="col-sm-8">
-                <input type="text" id="inventor_name" name="inventorName" placeholder="申请人" class="form-control">
+                <input type="text" id="inventor_name" name="handInInventor" placeholder="发明人" class="form-control">
             </div>
         </div>
         <div class="form-group col-sm-3">
-            <label for="auditor_name" class="control-label col-sm-4">发明人：</label>
+            <label for="dept_name1" class="control-label col-sm-4">部门：</label>
             <div class="col-sm-8">
-                <input type="text" id="auditor_name" name="auditorName" placeholder="发明人" class="form-control">
-            </div>
-        </div>
-        <div class="form-group col-sm-3">
-            <label for="dept_name" class="control-label col-sm-4">部门：</label>
-            <div class="col-sm-8">
-                <select name="deptId" id="dept_name" class="form-control">
+                <select name="deptId" id="dept_name1" class="form-control">
                 </select>
             </div>
         </div>
         <div class=""></div>
         <div class="col-sm-12" style="margin-top: 20px;">
-            <button class="layui-btn layui-btn-fluid" style="margin: auto;" type="button">查询</button>
+            <button class="layui-btn layui-btn-fluid" onclick="mohuchaxun()" style="margin: auto;" type="button">查询
+            </button>
         </div>
     </form>
 </div>
@@ -74,7 +76,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="dept_name" class="control-label col-sm-3">部门：</label>
+                        <label for="dept_name2" class="control-label col-sm-3">部门：</label>
                         <div class="col-sm-8">
                             <select name="deptId" id="dept_name2" class="form-control">
                             </select>
@@ -102,19 +104,65 @@
 </div>
 <div></div>
 <div class="col-sm-12">
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>11</th>
-            <th>22</th>
-            <th>33</th>
-        </tr>
-        <tr>
-            <td>111</td>
-            <td>222</td>
-            <td>333</td>
-        </tr>
-    </table>
+    <table id="PHandInListId" class="table"></table>
 </div>
-<script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
+<script type="text/javascript" th:src="@{/static/mine/js/page.js}">
+
+</script>
+<script>
+
+    /*初始化函数*/
+    $(function () {
+        PHandInListAll();
+    });
+
+    /*模糊查询*/
+    function mohuchaxun() {
+        $('#PHandInListId').bootstrapTable('destroy');
+        $('#PHandInListId').bootstrapTable('refresh');
+        PHandInListAll();
+    }
+
+    /*bootTable展示所有专利信息*/
+    function PHandInListAll() {
+        var handInName = $("input[name=handInName]").val();
+        $("#PHandInListId").bootstrapTable({
+            url: "/p_hand_in/ShowTabHandAndMoHu",//路径
+            method: "get", 			 //请求方式
+            cache: false,		    //关闭缓存
+            striped: true,        //是否有斑马线效果
+            pagination: true,      //开启分页
+            sortable: true,     //是否启用排序
+            sortOrder: "asc",   //排序的方式
+            sidePagination: "client", //client客户端分页,"server"服务端分页
+            clickToSelect: true,	 //设置复选框头
+
+            columns: [
+                {field: "handInNo", title: "编号", align: "center"},
+                {field: "handInName", title: "专利名称", align: "center"},
+                {field: "handInFrequency", title: "申请文件数", align: "center"},
+                {field: "handInInventor", title: "发明人", align: "center"},
+                {field: "userName", title: "申请人", align: "center"},
+                {field: "deptName", title: "部门", align: "center"},
+                {field: "handInTime", title: "申请时间", align: "center"},
+                {field: "handInAuditStatus", title: "目前状态", align: "center"},
+                {field:"",title:"操作",align :"center",
+                    formatter: function (value, row, index) {
+                        if(row.handInAuditStatus==0){
+                            return "<a href='javaScript:Weiqianpi("+row.id+")'>审核</a>";
+                        }else if(row.handInAuditStatus==1){
+                            return "<a href='javaScript:Weiqianpi("+row.id+")'>查看</a>";
+                        }else {
+                            return "<a href='javaScript:Weiqianpi("+row.id+")'>被驳回</a>";
+                        }
+                    }}
+
+            ],
+            queryParams: function (params) {
+                return $("#selectItem").serialize();
+            },
+        })
+    }
+</script>
 </body>
 </html>

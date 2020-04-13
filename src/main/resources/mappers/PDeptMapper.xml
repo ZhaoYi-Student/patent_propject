@@ -4,7 +4,6 @@
 
     <!--查找所有部门-->
     <select id="ShowDeptName" resultType="com.example.patent.entity.PDept">
-
         select
             id,
              dept_name as 'deptName',
@@ -13,5 +12,16 @@
                     from p_dept
 
     </select>
+
+    <select id="findDeptById" resultType="com.example.patent.entity.PDept">
+        select
+            id as 'id',
+            dept_name as 'deptName',
+            dept_information as 'deptInformation',
+            dept_createtime as 'deptCreatetime'
+            from p_dept
+            where id = #{deptId}
+    </select>
+
 
 </mapper>

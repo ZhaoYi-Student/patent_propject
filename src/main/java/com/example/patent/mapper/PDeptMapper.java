@@ -12,4 +12,6 @@ public interface PDeptMapper {
     /*查找部门*/
     List<PDept> ShowDeptName();
 
+    PDept findDeptById(Long deptId);
+
 }
