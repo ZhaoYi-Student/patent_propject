@@ -47,6 +47,13 @@ layui.use(['layer', 'form', 'element'], function () {
         if (fileObject) {
             // $("#fileLabel").html("<span style='cursor:pointer;'>"+fileList.name+"</span>");
             $.post({
+                url:"",
+                data:{"file":fileObject},
+                success:function(data){
+                    console.log(data);
+                }
+            },"json");
+            $.post({
                 url: "p_hand_in/addHandIn",
                 data: $("#addHandInForm").serialize(),
                 success: function (data) {
