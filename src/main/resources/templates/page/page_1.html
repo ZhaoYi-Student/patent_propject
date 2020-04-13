@@ -32,7 +32,7 @@
         </div>
         <div class=""></div>
         <div class="col-sm-12" style="margin-top: 20px;">
-            <button class="layui-btn layui-btn-fluid" onclick="mohuchaxun()" style="margin: auto;" type="button">查询
+            <button class="layui-btn layui-btn-fluid" id="likeSelect" style="margin: auto;" type="button">查询
             </button>
         </div>
     </form>
@@ -43,7 +43,7 @@
     </div>
 </div>
 <div id="addHandInPage" class="modal fade">
-    <form id="addHandInForm" class="form-horizontal">
+    <form id="addHandInForm" class="form-horizontal" enctype="multipart/form-data">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header center">
@@ -108,57 +108,6 @@
 </div>
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}">
 
-</script>
-<script>
-
-    /*初始化函数*/
-    $(function () {
-        PHandInListAll();
-    });
-
-    /*模糊查询*/
-    function mohuchaxun() {
-        $('#PHandInListId').bootstrapTable('destroy');
-        $('#PHandInListId').bootstrapTable('refresh');
-        PHandInListAll();
-    }
-
-    /*bootTable展示所有专利信息*/
-    function PHandInListAll() {
-        var handInName = $("input[name=handInName]").val();
-        $("#PHandInListId").bootstrapTable({
-            url: "/p_hand_in/ShowTabHandAndMoHu",//路径
-            method: "get", 			 //请求方式
-            cache: false,		    //关闭缓存
-            striped: true,        //是否有斑马线效果
-            pagination: true,      //开启分页
-            sortable: true,     //是否启用排序
-            sortOrder: "asc",   //排序的方式
-            sidePagination: "client", //client客户端分页,"server"服务端分页
-            clickToSelect: true,	 //设置复选框头
-
-            columns: [
-                {field: "handInNo", title: "编号", align: "center"},
-                {field: "handInName", title: "专利名称", align: "center"},
-                {field: "handInFrequency", title: "申请文件数", align: "center"},
-                {field: "handInInventor", title: "发明人", align: "center"},
-                {field: "puser.realName", title: "申请人", align: "center"},
-                {field: "pdept.deptName", title: "部门", align: "center"},
-                {field: "handInTime", title: "申请时间", align: "center"},
-                {field: "handInAuditStatus", title: "目前状态", align: "center"},
-                {
-                    field: "", title: "操作", align: "center",
-                    formatter: function (value, row, index) {
-                        return "<a href='javaScript:Weiqianpi(" + row.id + ")'>查看</a>";
-                    }
-                }
-
-            ],
-            queryParams: function (params) {
-                return $("#selectItem").serialize();
-            },
-        })
-    }
 </script>
 </body>
 </html>

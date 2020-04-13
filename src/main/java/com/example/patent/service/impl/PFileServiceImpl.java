@@ -14,6 +14,10 @@ public class PFileServiceImpl implements PFileService {
 
     @Override
     public Boolean addFile(PFile pFile) {
-        return null;
+        int i = pFileMapper.addFile(pFile);
+        if (i==1){
+            return true;
+        }
+        return false;
     }
 }

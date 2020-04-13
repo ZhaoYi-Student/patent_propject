@@ -52,7 +52,6 @@ public class PHandInServiceImpl implements PHandInService {
             p.setPDept(deptById);
             p.setPUser(userById);
         }
-        System.out.println(pHandIns);
         return pHandIns;
     }
 }
