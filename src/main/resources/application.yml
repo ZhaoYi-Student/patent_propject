@@ -1,5 +1,9 @@
 server:
   port: 8080
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

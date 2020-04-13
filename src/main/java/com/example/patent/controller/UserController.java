@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("UserCon")
@@ -50,6 +51,12 @@ public class UserController {
             return false;
         }
 
+    }
+
+    //page2.html的申请人下拉框
+    @RequestMapping("fingHandInApplicant_page2")
+    public List<PUser> fingHandInApplicant_page2(){
+        return pUserService.fingHandInApplicant();
     }
 
 }

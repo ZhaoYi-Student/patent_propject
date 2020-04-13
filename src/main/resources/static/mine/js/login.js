@@ -58,7 +58,7 @@ layui.use(['element', 'layer'], function () {
     function draw() {
         context.clearRect(0, 0, 120, 40);//在给定的矩形内清除指定的像素
         context.strokeRect(0, 0, 120, 40);//绘制矩形（无填充）
-        var aCode = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+        var aCode = ["0"];
         // 绘制字母
         var arr = [];//定义一个数组用来接收产生的随机数
         // var num;//定义容器接收验证码

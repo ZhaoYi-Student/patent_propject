@@ -45,8 +45,7 @@ public class PHandInServiceImpl implements PHandInService {
     @Override
     public List<PHandIn> ShowTabHandAndMoHu(PHandIn pHandIn) {
         List<PHandIn> pHandIns = pHandInMapper.PHandInList(pHandIn);
-        for (PHandIn p : pHandIns
-        ) {
+        for (PHandIn p : pHandIns) {
             PDept deptById = pDeptMapper.findDeptById(p.getDeptId());
             PUser userById = pUserMapper.findUserById(p.getHandInApplicant());
             p.setPDept(deptById);

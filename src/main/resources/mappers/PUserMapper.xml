@@ -17,6 +17,12 @@
         from p_user
         where id=#{id}
     </select>
+    
+    <!--List<PUser> fingHandInApplicant();-->
+    <select id="fingHandInApplicant" resultType="com.example.patent.entity.PUser">
+        select id, user_name as 'userName', real_name as 'realName', level as 'level', dept_id as 'deptId'
+        from p_user
+    </select>
 
 
 </mapper>

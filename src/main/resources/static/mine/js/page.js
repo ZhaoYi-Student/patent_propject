@@ -78,8 +78,8 @@ layui.use(['layer', 'form', 'element'], function () {
     auditList();
 
     function auditList() {
-        $("#changjiaTable").bootstrapTable({
-            url: "",
+        $("#page2Table").bootstrapTable({
+            url: "p_hand_in/ShowTabHandAndMoHu",
             method: 'post',// 提交方式
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",// 发送到服务器的编码类型
             pageNumber: 1,
@@ -114,11 +114,11 @@ layui.use(['layer', 'form', 'element'], function () {
                     title: '发明人'
                 },
                 {
-                    field: 'handInApplicant',
+                    field: 'puser.realName',
                     title: '申请人'
                 },
                 {
-                    field: '',
+                    field: 'pdept.deptName',
                     title: '部门'
                 },
                 {
@@ -126,28 +126,92 @@ layui.use(['layer', 'form', 'element'], function () {
                     title: '申请时间'
                 },
                 {
-                    field: 'handInAuditStatus',
-                    title: '目前状态'
+                    title: '目前状态',
+                    formatter: function (value, row, index) {
+                        if (row.handInAuditStatus==0) {
+                            return "待审核"
+                        }
+                        if (row.handInAuditStatus==1) {
+                            return "审核通过"
+                        }
+                        if (row.handInAuditStatus==2) {
+                            return "审核驳回"
+                        }
+                    }
                 },
                 {
                     title: '操作',
                     formatter: function (value, row, index) {
-                        return "<img src='/templates/page/page_2_audit.html' title='审核'>";
+                        return "<input value='审核' type='button'>";
                     }
                 }
-            ],
-            data: [{
-                handInName: "活期存款",
-                handInFrequency: "9000",
-                handInInventor: "1",
-                handInApplicant: "2",
-            }]
+            ]
         });
+        //申请人下拉框
+        $.ajax({
+            url:"UserCon/fingHandInApplicant_page2",
+            type:"post",
+            dataType:"json",
+            data:{},
+            success:function(data){
+                $(data).each(function(a,b){
+                    $("#handInApplicant").append("<option value='"+b.id+"'>"+b.realName+"</option>");
+                })
+            }
+        })
+        //部门下拉框
+        $.ajax({
+            url:"DeptCon/ShowDeptName",
+            type:"post",
+            dataType:"json",
+            data:{},
+            success:function(data){
+                $(data).each(function(a,b){
+                    $("#dept_name").append("<option value='"+b.id+"'>"+b.deptName+"</option>");
+                })
+            }
+        })
     }
+
+
 });
 
+function find_PHandIn_Only_page2() {
+    var handInName=$("#handInName").val();
+    var handInApplicant=$("#handInApplicant").val();
+    var handInInventor=$("#handInInventor").val();
+    var dept_name=$("#dept_name").val();
+    $.ajax({
+        url:"p_hand_in/ShowTabHandAndMoHu",
+        type:"post",
+        dataType:"json",
+        data:{
+            handInName:handInName,handInApplicant:handInApplicant,handInInventor:handInInventor,deptId:dept_name
+        },
+        success:function(data){
+            $("#page2Table").bootstrapTable('load',data);
+        }
+    })
+}
 
-
+function table_status() {
+    var handInName=$("#handInName").val();
+    var handInApplicant=$("#handInApplicant").val();
+    var handInInventor=$("#handInInventor").val();
+    var dept_name=$("#dept_name").val();
+    var page2_status=$("#page2_status").val();
+    $.ajax({
+        url:"p_hand_in/ShowTabHandAndMoHu",
+        type:"post",
+        dataType:"json",
+        data:{
+            handInName:handInName,handInApplicant:handInApplicant,handInInventor:handInInventor,deptId:dept_name
+        },
+        success:function(data){
+            $("#page2Table").bootstrapTable('load',data);
+        }
+    })
+}
 
 
 
