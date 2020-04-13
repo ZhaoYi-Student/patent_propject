@@ -102,7 +102,12 @@
         </div>
     </form>
 </div>
-<button value="all">全部</button><button value="1">待审核</button><button value="2">审核通过</button><button value="3">审核退回</button>
+<!--<button value="all">全部</button><button value="1">待审核</button><button value="2">审核通过</button><button value="3">审核退回</button>-->
+<select id="" onchange="">
+    <option value="0">待审核</option>
+    <option value="1">审核通过</option>
+    <option value="2">审核退回</option>
+</select>
 <table id="changjiaTable"></table>
 
 <script type="text/javascript" th:src="@{/static/mine/js/page_2.js}"></script>

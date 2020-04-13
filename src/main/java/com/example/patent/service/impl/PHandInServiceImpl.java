@@ -18,7 +18,7 @@ public class PHandInServiceImpl implements PHandInService {
     public Boolean addHandIn(PHandIn pHandIn) {
         try {
             pHandIn.setHandInFrequency("1");
-            pHandIn.setHandInProcess(1);
+            pHandIn.setHandInProcess(0);
             pHandIn.setHandInAuditStatus(0);
             pHandIn.setHandInTime(new Date());
             int i = pHandInMapper.addHandIn(pHandIn);
