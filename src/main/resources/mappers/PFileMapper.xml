@@ -9,4 +9,12 @@
         (#{id},#{fileName},#{filePath})
     </insert>
 
+    <select id="findFileById" resultType="com.example.patent.entity.PFile">
+        select id as 'id', file_name as 'fileName', file_path as 'filePath' from p_file where id = #{id}
+    </select>
+
+    <select id="pFileCount" resultType="int">
+        select count from p_file
+    </select>
+
 </mapper>

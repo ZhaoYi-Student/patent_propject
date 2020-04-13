@@ -1,9 +1,11 @@
 package com.example.patent.service.impl;
 
 import com.example.patent.entity.PDept;
+import com.example.patent.entity.PFile;
 import com.example.patent.entity.PHandIn;
 import com.example.patent.entity.PUser;
 import com.example.patent.mapper.PDeptMapper;
+import com.example.patent.mapper.PFileMapper;
 import com.example.patent.mapper.PHandInMapper;
 import com.example.patent.mapper.PUserMapper;
 import com.example.patent.service.PHandInService;
@@ -22,14 +24,18 @@ public class PHandInServiceImpl implements PHandInService {
     private PDeptMapper pDeptMapper;
     @Autowired
     private PUserMapper pUserMapper;
+    @Autowired
+    private PFileMapper pFileMapper;
 
     @Override
     public Boolean addHandIn(PHandIn pHandIn) {
         try {
+            int count = pFileMapper.pFileCount();
             pHandIn.setHandInFrequency("1");
             pHandIn.setHandInProcess(1);
             pHandIn.setHandInAuditStatus(0);
             pHandIn.setHandInTime(new Date());
+            pHandIn.setFileId(count);
             int i = pHandInMapper.addHandIn(pHandIn);
             if (i == 1) {
                 return true;
@@ -48,8 +54,10 @@ public class PHandInServiceImpl implements PHandInService {
         for (PHandIn p : pHandIns) {
             PDept deptById = pDeptMapper.findDeptById(p.getDeptId());
             PUser userById = pUserMapper.findUserById(p.getHandInApplicant());
+            PFile fileById = pFileMapper.findFileById(p.getFileId());
             p.setPDept(deptById);
             p.setPUser(userById);
+            p.setPFile(fileById);
         }
         return pHandIns;
     }

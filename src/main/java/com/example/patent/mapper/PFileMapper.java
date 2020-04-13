@@ -8,4 +8,7 @@ public interface PFileMapper {
 
     int addFile(PFile pFile);
 
+    PFile findFileById(Long id);
+
+    int pFileCount();
 }
