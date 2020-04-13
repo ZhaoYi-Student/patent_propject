@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: head"></head>
+<body>
+<div class="col-sm-12" style="padding: 30px 0 20px 0">
+    <form id="auditForm" class="form-horizontal">
+        <div class="form-group col-sm-3">
+            <label for="patent_name" class="control-label col-sm-3">专利名称：</label>
+            <div class="col-sm-8">
+                <input type="text" id="patent_name" name="patentName" placeholder="专利名称" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="inventor_name" class="control-label col-sm-3">申请人：</label>
+            <div class="col-sm-8">
+                <input type="text" id="inventor_name" name="inventorName" placeholder="申请人" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="auditor_name" class="control-label col-sm-3">发明人：</label>
+            <div class="col-sm-8">
+                <input type="text" id="auditor_name" name="auditorName" placeholder="发明人" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="dept_name" class="control-label col-sm-4">部门：</label>
+            <div class="col-sm-8">
+                <input type="text" id="dept_name" name="auditorName" placeholder="发明人" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-sm-1">
+            <div class="col-sm-12">
+                <button class="layui-btn layui-btn-fluid" style="margin: auto;" type="button">查询</button>
+            </div>
+        </div>
+    </form>
+</div>
+<button value="all">全部</button><button value="1">待审核</button><button value="2">审核通过</button><button value="3">审核退回</button>
+<select id="" class="form-control">
+    <option value="0" selected>待审核</option>
+    <option value="1">审核通过</option>
+    <option value="2">审核退回</option>
+</select>
+<table id="changjiaTable"></table>
+<script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
+</body>
+</html>

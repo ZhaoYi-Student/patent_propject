@@ -4,13 +4,44 @@
 
     <select id="PHandInList" resultType="com.example.patent.entity.PHandIn">
         select
-        id as  'id', hand_in_name as 'handInName', hand_in_inventor as 'handInInventor',
-        hand_in_no as 'handInNo', hand_in_schedule as 'handInSchedule', hand_in_auditor as 'handInAuditor',
-        hand_in_audit_information as 'handInAuditInformation', hand_in_audit_status as 'handInAuditStatus',
-        hand_in_time as 'handInTime', hand_in_importance_level as 'handInImportanceLevel', hand_in_applicant as 'handInApplicant',
-        hand_in_frequency as 'handInFrequency', hand_in_process as 'handInProcess', p_t_s_id as 'pTSId', p_t_s_end_id as 'pTSEndId',
-        supervisor_opinion as 'supervisorOpinion', technical_person_opinion as 'technicalPersonOpinion', dept_id as 'deptId'
+        id as 'id',
+        hand_in_name as 'handInName',
+        hand_in_inventor as 'handInInventor',
+        hand_in_no as 'handInNo',
+        hand_in_schedule as 'handInSchedule',
+        hand_in_auditor as 'handInAuditor',
+        hand_in_audit_information as 'handInAuditInformation',
+        hand_in_audit_status as 'handInAuditStatus',
+        hand_in_time as 'handInTime',
+        hand_in_importance_level as 'handInImportanceLevel',
+        hand_in_applicant as 'handInApplicant',
+        hand_in_frequency as 'handInFrequency',
+        hand_in_process as 'handInProcess',
+        p_t_s_id as 'pTSId',
+        p_t_s_end_id as 'pTSEndId',
+        supervisor_opinion as 'supervisorOpinion',
+        technical_person_opinion as 'technicalPersonOpinion',
+        dept_id as 'deptId'
         from p_hand_in
+        <where>
+            <if test="handInName != null and handInName != '' ">
+                and hand_in_name = #{handInName}
+            </if>
+
+            <if test="handInInventor != null and handInInventor != '' ">
+                and hand_in_inventor = #{handInInventor}
+            </if>
+
+            <if test="handInApplicant != 0 ">
+                and hand_in_applicant = #{handInApplicant}
+            </if>
+
+            <if test="deptId != 0 ">
+                and dept_id = #{deptId}
+            </if>
+
+        </where>
+
     </select>
 
     <insert id="addHandIn">
