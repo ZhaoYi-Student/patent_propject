@@ -14,7 +14,7 @@
     </select>
 
     <select id="pFileCount" resultType="int">
-        select count from p_file
+        select count(id) from p_file
     </select>
 
 </mapper>
