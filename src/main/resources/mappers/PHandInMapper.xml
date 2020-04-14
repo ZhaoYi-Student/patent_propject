@@ -25,6 +25,9 @@
         from p_hand_in
         <where>
             1=1
+            <if test="id != 0">
+                id = #{id}
+            </if>
             <if test="handInName != null and handInName != '' ">
                 and hand_in_name like concat('%', #{handInName} ,'%')
             </if>
@@ -34,11 +37,11 @@
             </if>
 
             <if test="handInApplicant != 0 ">
-                and hand_in_applicant like concat('%', #{handInApplicant} ,'%')
+                and hand_in_applicant = #{handInApplicant}
             </if>
 
             <if test="deptId != 0 ">
-                and dept_id like concat('%', #{deptId} ,'%')
+                and dept_id = #{deptId}
             </if>
 
             <if test="handInAuditStatus != null and handInAuditStatus != '' ">

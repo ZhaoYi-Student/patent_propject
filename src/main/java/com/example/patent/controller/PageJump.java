@@ -46,9 +46,4 @@ public class PageJump {
         return "page/add_hand_in";
     }
 
-    @RequestMapping("page_3")
-    public String page_3(){
-        return "page3/page_3";
-    }
-
 }
