@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: head"></head>
+<style type="text/css">
+    .type_text{
+        outline-style: none ;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding: 7px 10px;
+        width: 150px;
+        font-size: 7px;
+        font-weight: 700;
+        font-family: "Microsoft soft";
+    }
+    .type_button{
+        width: 82px;
+        height: 38px;
+        background: #169bd5;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<span style="text-align: center;display:block;"><strong><h1>个人中心</h1></strong></span>
+<br><br><br>
+<div style="text-align: center;display:block;"><h3>账号&nbsp;:&nbsp;&nbsp;<input type="text" class="type_text" id="1" th:value="${session.userInfo.userName}" disabled></h3></div>
+<br><br><br>
+<div style="text-align: center;display:block;"><h3>姓名&nbsp;:&nbsp;&nbsp;<input type="text" class="type_text" id="2" th:value="${session.userInfo.realName}" disabled></h3></div>
+<br><br><br>
+<div style="text-align: center;display:block;"><h3>等级&nbsp;:&nbsp;&nbsp;<input type="text" class="type_text" id="3" th:value="${session.userInfo.level}" disabled></h3></div>
+<br><br><br>
+
+</body>
+</html>
