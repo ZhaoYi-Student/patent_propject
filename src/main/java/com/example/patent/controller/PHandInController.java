@@ -20,6 +20,13 @@ public class PHandInController {
     @Autowired
     private PHandInService pHandInService;
 
+    /*FindByIdAll
+    * 查询单条信息*/
+    @RequestMapping ("FindByIdAll")
+    public PHandIn FindByIdAll(Long id){
+        return pHandInService.FindByIdAll(id);
+    }
+
 
     /*模糊查询 加展示 所有信息*/
     @RequestMapping ("ShowTabHandAndMoHu")

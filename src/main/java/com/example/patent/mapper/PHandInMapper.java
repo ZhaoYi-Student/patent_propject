@@ -13,4 +13,6 @@ public interface PHandInMapper {
     int addHandIn(PHandIn pHandIn);
 
     List<PHandIn> PHandInList(PHandIn pHandIn);
+
+    PHandIn FindByIdAll(@Param("id") Long id);
 }

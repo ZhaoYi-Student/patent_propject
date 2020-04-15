@@ -61,4 +61,13 @@ public class PHandInServiceImpl implements PHandInService {
         }
         return pHandIns;
     }
+
+    @Override
+    public PHandIn FindByIdAll(Long id) {
+        PHandIn pHandIn = pHandInMapper.FindByIdAll(id);
+
+        PDept deptById = pDeptMapper.findDeptById(pHandIn.getDeptId());
+        pHandIn.setPDept(deptById);
+        return pHandIn;
+    }
 }

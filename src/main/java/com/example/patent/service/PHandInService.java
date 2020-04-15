@@ -11,4 +11,6 @@ public interface PHandInService {
 
 
     List<PHandIn> ShowTabHandAndMoHu(PHandIn pHandIn);
+
+    PHandIn FindByIdAll(Long id);
 }

@@ -129,7 +129,7 @@ layui.use(['layer', 'form', 'element'], function () {
                 {
                     field: "", title: "操作", align: "center",
                     formatter: function (value, row, index) {
-                        return "<a href='javaScript:Weiqianpi(" + row.id + ")'>查看</a>";
+                        return "<a href='javaScript:FindByIdAll(" + row.id + ")'>查看</a>";
                     }
                 }
 
@@ -145,8 +145,31 @@ layui.use(['layer', 'form', 'element'], function () {
 
 });
 
+$(function () {
+    $("#dantiaoZhuanLi").hide();
+})
+
+function FindByIdAll(id) {
+
+    $("#myModal").modal("show");
 
 
+    $.ajax({
+        url:"/p_hand_in/FindByIdAll",
+        type:"post",
+        dataType:"json",
+        data:{"id":id},
+        success:function (data) {
+          $("#bianhao").val(data.handInNo);
+            $("#famingren").val(data.handInInventor);
+            $("#shijian").val(data.handInTime);
+            $("#jiaodishu").val(data.handInName);
+            $("#bumen").val(data.pdept.deptName);
+            ;
+
+        }
+    })
+}
 
 
 

@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head"></head>
+<style type="text/css">
+    #hz{
+        margin-left: 6%;
+        width: 800px;
+        border: 1px solid black;
+    }
+    #hz1 {
+        position: absolute;
+        left: 550px;
+        top: 20px;
+    }
+</style>
 <body>
-<div class="col-sm-12" style="padding: 30px 0 20px 0">
+<div class="col-sm-12" style="padding: 30px 0 20px 0" id="xx1">
     <form class="form-horizontal" id="selectItem">
         <div class="form-group col-sm-3">
             <label for="hand_in_name1" class="control-label col-sm-4">专利名称：</label>
@@ -37,7 +49,7 @@
         </div>
     </form>
 </div>
-<div class="col-sm-12">
+<div class="col-sm-12" id="xx2">
     <div class="col-sm-1" style="padding: 0 0 10px 0">
         <button id="addHandIn" class="layui-btn layui-btn-primary layui-btn-fluid">新建交底书</button>
     </div>
@@ -103,10 +115,96 @@
     </form>
 </div>
 <div></div>
-<div class="col-sm-12">
+<div class="col-sm-12" id="xx3" >
     <table id="PHandInListId" class="table"></table>
 </div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 1000px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    专利信息详情
+                </h4>
+            </div>
+            <div class="modal-body" style="height: 650px">
+                <div id="hz">
+                    <div >
+                        <ul>
+                            <li>
+                    <span style="">
+                        交底书编号:<input type="text" disabled="disabled" name="" id="bianhao" value="" style="border:none;" />
+                    </span>
+                            </li>
+                            <br />
+                            <br />
+                            <li>
+
+                            </li>
+                            <br />
+                            <br />
+                            <li>
+                    <span>
+                        发明人:<input type="text" name="" disabled="disabled" id="famingren"  value="" style="border:none;"/>
+                    </span>
+                            </li>
+                            <br />
+                            <br />
+                            <li>
+                    <span >
+                        时间:<input type="text" name="" disabled="disabled" id="shijian"  value="" style="border:none;"/>
+                    </span>
+                            </li>
+                       </ul>
+                    </div>
+                    <div id="hz1">
+                        <ul>
+                            <li>
+                    <span style=" overflow: hidden;">
+                        交底书名称:<input type="text" name="" disabled="disabled" id="jiaodishu"  value="" style="border:none;"/>
+                    </span>
+                            </li>
+                            <br />
+                            <br />
+                            <li>
+                    <span >
+                        部门:<input type="text" name="" disabled="disabled" id="bumen"  value="" style="border:none;"/>
+                    </span>
+                            </li>
+                            <br />
+                            <br />
+                            <li>
+                    <span >
+                        专利一沟通记录:<input type="text" name="" id=""  value="" style="border:none;"/>
+                    </span>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+
+
+
+
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}">
+
+
 
 </script>
 </body>
