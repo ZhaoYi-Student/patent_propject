@@ -24,23 +24,38 @@ public class PFileController {
 
         synchronized (this) {
             String originalFilename = multipartFile.getOriginalFilename();
-            String path = "D://patent-file/";
-            String fileName = UUID.randomUUID() + originalFilename.trim();
-            File file = new File(path + fileName);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-            try {
-                multipartFile.transferTo(file);
-                String s = FileUntil.fileUpload(fileName);
-                PFile pFile = new PFile();
-                pFile.setFileName(s);
-                pFile.setFilePath("https://patent-file1.oss-cn-hangzhou.aliyuncs.com/" + s);
-                return pFileService.addFile(pFile);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (originalFilename != null) {
+                String path = "D://patent-file/";
+                String fileName = UUID.randomUUID() + originalFilename.replace(" ", "");
+                File file = new File(path + fileName);
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
+                try {
+                    multipartFile.transferTo(file);
+                    String s = FileUntil.fileUpload(fileName);
+                    PFile pFile = new PFile();
+                    pFile.setFileName(originalFilename);
+                    pFile.setFilePath(s);
+                    return pFileService.addFile(pFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            } else {
                 return false;
             }
         }
+    }
+
+    @RequestMapping("downloadFile")
+    String downloadFile(String filePath) {
+
+        return FileUntil.downloadFile(filePath);
+    }
+
+    @RequestMapping("findFileById")
+    PFile findFileById(Long id) {
+        return pFileService.findFileById(id);
     }
 }

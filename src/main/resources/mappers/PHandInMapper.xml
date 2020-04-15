@@ -21,7 +21,8 @@
         p_t_s_end_id as 'pTSEndId',
         supervisor_opinion as 'supervisorOpinion',
         technical_person_opinion as 'technicalPersonOpinion',
-        dept_id as 'deptId'
+        dept_id as 'deptId',
+        file_id as 'fileId'
         from p_hand_in
         <where>
             1=1
@@ -44,7 +45,7 @@
                 and dept_id = #{deptId}
             </if>
 
-            <if test="handInAuditStatus != null and handInAuditStatus != '' ">
+            <if test="handInAuditStatus != 0">
                 and hand_in_inventor = #{handInAuditStatus}
             </if>
 
@@ -55,10 +56,10 @@
     <insert id="addHandIn">
         insert into p_hand_in
         (hand_in_name, hand_in_inventor, hand_in_no,hand_in_audit_status, hand_in_time,
-        hand_in_applicant, hand_in_frequency, hand_in_process,dept_id)
+        hand_in_applicant, hand_in_frequency, hand_in_process,dept_id,file_id)
         values
         (#{handInName},#{handInInventor},#{handInNo},#{handInAuditStatus},#{handInTime},
-        #{handInApplicant},#{handInFrequency},#{handInProcess},#{deptId})
+        #{handInApplicant},#{handInFrequency},#{handInProcess},#{deptId},#{fileId})
     </insert>
 
 </mapper>

@@ -3,10 +3,7 @@ package com.example.patent.untils;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.model.CreateBucketRequest;
-import com.aliyun.oss.model.ObjectMetadata;
-import com.aliyun.oss.model.PutObjectRequest;
-import com.aliyun.oss.model.PutObjectResult;
+import com.aliyun.oss.model.*;
 import sun.plugin2.ipc.windows.WindowsIPCFactory;
 
 import java.io.ByteArrayInputStream;
@@ -22,18 +19,18 @@ import java.util.UUID;
 public class FileUntil {
 
     // Endpoint以杭州为例，其它Region请按实际情况填写。
-    static final String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+    private static final String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
     // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-    static final String accessKeyId = "LTAI4FuYBzB3ShsaMjhAn26Z";
-    static final String accessKeySecret = "xK1lndT7FutLYQ2hOGNZxTccXosFmQ";
-    static final String bucketName = "patent-file1";
-    static final String path = "D://patent-file/";
+    private static final String accessKeyId = "LTAI4FuYBzB3ShsaMjhAn26Z";
+    private static final String accessKeySecret = "xK1lndT7FutLYQ2hOGNZxTccXosFmQ";
+    private static final String bucketName = "patent-file1";
+    private static final String path = "D://patent-file/";
+    private static final OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
     public static String fileUpload(String fileName) {
-        String name = new Date().getTime() + fileName;
+        String name = new Date().getTime() + UUID.randomUUID().toString();
 
 // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
         if (!ossClient.doesBucketExist(bucketName)) {
             CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
@@ -62,6 +59,17 @@ public class FileUntil {
 // 关闭OSSClient。
         ossClient.shutdown();
         return name;
+    }
+
+
+    public static String downloadFile(String filepath) {
+        String path = "D://A-patent-file/";
+        File file = new File(path);
+        if (!file.exists()) {
+            boolean mkdirs = file.mkdirs();
+        }
+        ossClient.getObject(new GetObjectRequest(bucketName, filepath), new File(path + filepath + ".docx"));
+        return path + filepath + ".docx";
     }
 
 }

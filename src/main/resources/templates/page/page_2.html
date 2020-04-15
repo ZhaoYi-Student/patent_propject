@@ -13,8 +13,7 @@
         <div class="form-group col-sm-3">
             <label for="handInApplicant" class="control-label col-sm-3">申请人：</label>
             <div class="col-sm-8">
-                <select id="handInApplicant" class="form-control">
-                    <option class="form-control" value="0">---请选择---</option>
+                <select id="handInApplicant" class="form-control" lay-verify="" lay-search>
                 </select>
             </div>
         </div>
@@ -34,17 +33,34 @@
         </div>
         <div class="form-group col-sm-1">
             <div class="col-sm-12">
-                <input class="layui-btn layui-btn-fluid" style="margin: auto;" type="button" value="查询" onclick="find_PHandIn_Only_page2()"/>
+                <input class="layui-btn layui-btn-fluid" style="margin: auto;" type="button" value="查询" id="inquire"/>
             </div>
         </div>
     </form>
 </div>
-<select id="page2_status" class="form-control" style="width: 130px" onblur="table_status()">
+<select id="page2_status" class="form-control" style="width: 130px">
     <option value="0" selected>待审核</option>
     <option value="1">审核通过
     <option value="2">审核退回</option>
 </select>
+<div id="downloadFile" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                查看文件
+            </div>
+            <div class="modal-body">
+                <p id="fileDownloadName">
+                </p>
+                <input type="hidden" id="filePath">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="layui-btn layui-btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <table id="page2Table"></table>
-<script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
+<script type="text/javascript" th:src="@{/static/mine/js/page_2.js}"></script>
 </body>
 </html>
