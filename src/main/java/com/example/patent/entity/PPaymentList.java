@@ -14,5 +14,6 @@ public class PPaymentList {
   private String paymentNo;
   private long handInId;
   private long paymentRenewals;
+  private PHandIn pHandIn;
 
 }

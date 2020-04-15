@@ -25,7 +25,7 @@
 
         <div class=""></div>
         <div class="col-sm-12" style="margin-top: 20px;">
-            <button class="layui-btn layui-btn-fluid" style="margin: auto;" type="button">查询</button>
+            <button class="layui-btn layui-btn-fluid" style="margin: auto;" ONCLICK="chaxun()" type="button">查询</button>
         </div>
     </form>
 </div>
@@ -101,29 +101,26 @@
 </div>
 <div></div>
 <div class="col-sm-12">
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>11</th>
-            <th>22</th>
-            <th>33</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-        </tr>
-        <tr>
-            <td>111</td>
-            <td>222</td>
-            <td>333</td>
-        </tr>
-        <tr>
-            <td>111</td>
-            <td>222</td>
-            <td>333</td>
-        </tr>
-
-    </table>
+    <table class="table table-bordered table-striped"></table>
 </div>
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
 </body>
 </html>
+<script>
+
+    function chaxun(){
+        var patentName=$("#patentName").val();
+        var inventorName=$("#inventorName").val();
+        var auditorName=$("#auditorName").val();
+    $.ajax({
+        url:"${pageContext.request.contextPath}/p_payment_list/findAllByCondition",
+        data:{patentName:patentName,inventorName:inventorName,auditorName:auditorName},
+        dataType:"json",
+        type:"post",
+        success:function (data) {
+            
+        }
+    })
+    }
+
+</script>

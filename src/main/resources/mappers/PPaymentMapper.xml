@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.patent.mapper.PDeptMapper">
+<mapper namespace="com.example.patent.mapper.PPaymentListMapper">
 
-<!--    &lt;!&ndash;查找所有部门&ndash;&gt;-->
-<!--    <select id="ShowDeptName" resultType="com.example.patent.entity.PDept">-->
-<!--        select-->
-<!--            id,-->
-<!--             dept_name as 'deptName',-->
-<!--               dept_information as 'deptInformation',-->
-<!--                 dept_createtime as 'deptCreatetime'-->
-<!--                    from p_dept-->
+    <select id="findAll" resultType="com.example.patent.entity.PPaymentList">
+        select
+        id as 'id',
+        payment_createtime as 'paymentCreatetime',
+        payment_expiration_date as 'paymentExpirationDate',
+        payment_no as 'paymentNo',
+        hand_in_id as 'handInId',
+        payment_renewals as 'paymentRenewals'
+        from p_payment_list
+    </select>
 
-<!--    </select>-->
-
-<!--    <select id="findDeptById" resultType="com.example.patent.entity.PDept">-->
-<!--        select-->
-<!--            id as 'id',-->
-<!--            dept_name as 'deptName',-->
-<!--            dept_information as 'deptInformation',-->
-<!--            dept_createtime as 'deptCreatetime'-->
-<!--            from p_dept-->
-<!--            where id = #{deptId}-->
-<!--    </select>-->
 
 
 </mapper>
