@@ -18,10 +18,11 @@ function auditList() {
     var handInInventor = $("#handInInventor").val();
     var dept_name = $("#dept_name").val();
     var page2_status = $("#page2_status").val();
+    var levelId = $("#level_id").val();
 
     $("#page2Table").bootstrapTable("destroy");
     $("#page2Table").bootstrapTable({
-        url: "p_hand_in/ShowTabHandAndMoHu",
+        url: "p_level/findAllByCondition",
         method: 'post',// 提交方式
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",// 发送到服务器的编码类型
         pageNumber: 1,
@@ -38,7 +39,8 @@ function auditList() {
                 handInApplicant: handInApplicant,
                 handInInventor: handInInventor,
                 deptId: dept_name,
-                handInAuditStatus: page2_status
+                handInAuditStatus: page2_status,
+                pLevelId: levelId
             };
         },
         columns: [

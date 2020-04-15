@@ -4,6 +4,7 @@
 <body>
 <div class="col-sm-12" style="padding: 30px 0 20px 0">
     <form id="auditForm" class="form-horizontal">
+        <input type="hidden" id="level_id" th:value="${session.userInfo.getLevel()}">
         <div class="form-group col-sm-3">
             <label for="handInName" class="control-label col-sm-3">专利名称：</label>
             <div class="col-sm-8">
@@ -39,8 +40,8 @@
     </form>
 </div>
 <select id="page2_status" class="form-control" style="width: 130px">
-    <option value="0" selected>待审核</option>
-    <option value="1">审核通过
+    <option value="0" th:if="${session.userInfo.getLevel()!=1}">待审核</option>
+    <option value="1" selected>审核通过
     <option value="2">审核退回</option>
 </select>
 <div id="downloadFile" class="modal fade">

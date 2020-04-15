@@ -26,6 +26,7 @@
         from p_hand_in
         <where>
             1=1
+
             <if test="id != 0">
                 id = #{id}
             </if>
@@ -47,6 +48,9 @@
 
             <if test="handInAuditStatus != 0">
                 and hand_in_inventor = #{handInAuditStatus}
+            </if>
+            <if test="handInProcess != 0">
+                and hand_in_process = #{handInProcess}
             </if>
 
         </where>
