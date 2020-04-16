@@ -4,6 +4,7 @@ import com.example.patent.entity.PHandIn;
 import com.example.patent.entity.PUser;
 import com.example.patent.service.PHandInService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,5 +43,22 @@ public class PHandInController {
         return pHandInService.addHandIn(pHandIn);
     }
 
+    @RequestMapping("findShenheContent")
+    public PHandIn findShenheContent(Long id){
+       return pHandInService.findShenheContent(id);
+
+    }
+
+    @RequestMapping("applyReject")
+    @ResponseBody
+    public Boolean applyReject(Long id){
+        return pHandInService.applyReject(id);
+    }
+
+    @RequestMapping("applyPass")
+    @ResponseBody
+    public Boolean applyPass(Long id){
+        return pHandInService.applyPass(id);
+    }
 
 }
