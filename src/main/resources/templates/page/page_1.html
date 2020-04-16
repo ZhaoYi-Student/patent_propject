@@ -1,6 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head"></head>
+<!--进度条样式-->
+<style>
+
+
+
+    /*.process_info {
+        width: 100%;
+    }
+
+    .process_name {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .process_name .hr-line {
+        width: 2px;
+        height: 80px;
+        padding-bottom: 10px;
+        background-color: rgba(161, 163, 163, 0.66);
+    }
+
+    .process_name .mine-circle {
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        width: 30px;
+        height: 30px;
+        background-color: rgba(161, 163, 163, 0.66);
+    }
+
+    .process_info .cantSeeLine ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .process_info .cantSeeLine ul li{
+        width: 3px;
+        height: 1px;
+        background-color: rgba(161, 163, 163, 0.66);
+    }*/
+
+    /*步骤条end*/
+</style>
 <body>
 <div class="col-sm-12" style="padding: 30px 0 20px 0">
     <form class="form-horizontal" id="selectItem">
@@ -106,8 +150,36 @@
 <div class="col-sm-12">
     <table id="PHandInListId" class="table"></table>
 </div>
+
+
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}">
 
+</script>
+<div style="height: 200px"></div>
+
+
+<script src='https://cdn.bootcss.com/jquery/3.3.1/jquery.js'></script>
+<script>
+    //步骤条
+    if ($(".s-step0").hasClass("active")) {
+        $(".s-step0>b>b,.s-step0>div").addClass("active");
+        $(".s-step1>em,.s-step2>em,.s-step3>em,.s-step4>em").hide();
+    }
+    else if ($(".s-step1").hasClass("active")) {
+        $(".s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+        $(".s-step2>em,.s-step3>em,.s-step4>em").hide();
+    }
+    else if ($(".s-step2").hasClass("active")) {
+        $(".s-step2>b>b,.s-step2>div,.s-step1>p,.s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+        $(".s-step3>em,.s-step4>em").hide();
+    }
+    else if ($(".s-step3").hasClass("active")) {
+        $(".s-step3>b>b,.s-step3>div,.s-step2>p,.s-step2>b>b,.s-step2>div,.s-step1>p,.s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+        $(".s-step4>em").hide();
+    }
+    else {
+        $(".s-step4>b>b,.s-step4>div,.s-step3>p,.s-step3>b>b,.s-step3>div,.s-step2>p,.s-step2>b>b,.s-step2>div,.s-step1>p,.s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+    }
 </script>
 </body>
 </html>
