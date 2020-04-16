@@ -2,15 +2,12 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head"></head>
 <style type="text/css">
-    #hz{
-        margin-left: 6%;
-        width: 800px;
-        border: 1px solid black;
+    #hz {
+        width: 100%;
     }
-    #hz1 {
-        position: absolute;
-        left: 550px;
-        top: 20px;
+
+    #hz div{
+        margin-top: 30px;
     }
 </style>
 <body>
@@ -115,15 +112,15 @@
     </form>
 </div>
 <div></div>
-<div class="col-sm-12" id="xx3" >
+<div class="col-sm-12" id="xx3">
     <table id="PHandInListId" class="table"></table>
 </div>
 
 
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="width: 1000px;">
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" style="width: 1200px;">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
@@ -132,111 +129,42 @@
                     专利信息详情
                 </h4>
             </div>
-            <div class="modal-body" style="height: 650px">
+            <div class="modal-body">
                 <div id="hz">
-                    <div >
-                        <ul>
-                            <li>
-                    <span style="">
-                        交底书编号:<input type="text" disabled="disabled" name="" id="bianhao" value="" style="border:none;" />
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                    <span>
-                        发明人:<input type="text" name="" disabled="disabled" id="famingren"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                    <span >
-                        时间:<input type="text" name="" disabled="disabled" id="shijian"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-
-                            <li>
-                            <br />
-                            <br />
-                     <span >
-                        文件名:<input type="text" name="" disabled="disabled" id="wenjianming"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <li>
-                                <br />
-                                <br />
-                                <span >
-                        申请次数:<input type="text" name="" disabled="disabled" id="shenqingcishu"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                    <span >
-                        技术负责人意见:<input type="text" name="" disabled="disabled" id="jishufuzerenyijian"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-
-                        </ul>
+                    <div class="col-sm-4">
+                        <label class="col-sm-5">交底书编号:</label><span id="bianhao" class="col-sm-7"></span>
                     </div>
-                    <div id="hz1">
-                        <ul>
-                            <li>
-                    <span style=" overflow: hidden;">
-                        交底书名称:<input type="text" name="" disabled="disabled" id="jiaodishu"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                    <span >
-                        部门:<input type="text" name="" disabled="disabled" id="bumen"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                     <span >
-                        申请人:<input type="text" name="" disabled="disabled" id="shenqingren"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                     <span >
-                        进度:<input type="text" name="" disabled="disabled" id="jindu"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-                            <br />
-                            <br />
-                            <li>
-                     <span >
-                        主观意见:<input type="text" name="" disabled="disabled" id="zhuguanyijian"  value="" style="border:none;"/>
-                    </span>
-                            </li>
-
-                        </ul>
+                    <div class="col-sm-4">
+                        <label class="col-sm-4">发明人:</label><span id="famingren" class="col-sm-8"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-5">时间:</label><span id="shijian" class="col-sm-7"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-4">文件名:</label><span id="wenjianming" class="col-sm-8"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-6">申请次数:</label><span id="shenqingcishu" class="col-sm-6"></span>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-2">技术负责人意见:</label><textarea id="jishufuzerenyijian" placeholder="技术负责人意见"
+                                                                          class="col-sm-10 layui-textarea"></textarea>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-2">主观意见:</label><textarea id="zhuguanyijian" placeholder="主观意见"
+                                                                       class="col-sm-10 layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary">提交更改
-                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="display: none;">关闭</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 
 
-
-
-
-
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}">
-
 
 
 </script>

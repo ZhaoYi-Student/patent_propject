@@ -155,24 +155,22 @@ function FindByIdAll(id) {
 
 
     $.ajax({
-        url:"/p_hand_in/FindByIdAll",
-        type:"post",
-        dataType:"json",
-        data:{"id":id},
-        success:function (data) {
-          $("#bianhao").val(data.handInNo);
-            $("#famingren").val(data.handInInventor);
-            $("#shijian").val(data.handInTime);
-            $("#jiaodishu").val(data.handInName);
-            $("#bumen").val(data.pdept.deptName);
-            $("#shenqingren").val(data.puser.realName);
-            $("#wenjianming").val(data.pfile.fileName);
-            $("#jindu").val(data.handInSchedule);
-            $("#shenqingcishu").val(data.handInFrequency);
+        url: "/p_hand_in/FindByIdAll",
+        type: "post",
+        dataType: "json",
+        data: {"id": id},
+        success: function (data) {
+            $("#bianhao").html(data.handInNo);
+            $("#famingren").html(data.handInInventor);
+            $("#shijian").html(data.handInTime);
+            $("#jiaodishu").html(data.handInName);
+            $("#bumen").html(data.pdept.deptName);
+            $("#shenqingren").html(data.puser.realName);
+            $("#wenjianming").html(data.pfile.fileName);
+            $("#jindu").html(data.handInSchedule);
+            $("#shenqingcishu").html(data.handInFrequency);
             $("#zhuguanyijian").val(data.supervisorOpinion);
             $("#jishufuzerenyijian").val(data.technicalPersonOpinion);
-            ;
-
         }
     })
 }
