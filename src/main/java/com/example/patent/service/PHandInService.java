@@ -13,4 +13,10 @@ public interface PHandInService {
     List<PHandIn> ShowTabHandAndMoHu(PHandIn pHandIn);
 
     PHandIn FindByIdAll(Long id);
+
+    PHandIn findShenheContent(Long id);
+
+    Boolean applyReject(Long id);
+
+    Boolean applyPass(Long id);
 }

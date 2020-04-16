@@ -95,7 +95,14 @@ function auditList() {
             {
                 title: '操作',
                 formatter: function (value, row, index) {
-                    return "<input value='审核' type='button'>";
+                    if (row.handInAuditStatus==1) {
+                        return "<a>查看</a>"
+                    }else if (row.handInAuditStatus==2) {
+                        return "<a>查看</a>"
+                    }else {
+                        return "<a href='javascript:selectShenhe(" + row.id + ")'>审核</a>";
+                    }
+
                 }
             }
         ]
@@ -172,6 +179,69 @@ function downloadFile() {
         }
     }, "json");
 }
+
+function selectShenhe(id) {
+    $("#shenhePage").modal('show');
+    //alert(id)
+    $.ajax({
+        url: "p_hand_in/findShenheContent",
+        type: "post",
+        dataType: "json",
+        data:{id:id},
+        success: function (data) {
+            if (data) {
+                $("#id").val(data.id);
+                $("#hand_in_no").val(data.handInNo);
+                $("#hand_in_name").val(data.handInName);
+                $("#hand_in_applicant").val(data.handInInventor);
+
+                $("#dept_name2").val(data.pdept.deptName);
+
+            }else {
+                alert("failed")
+            }
+        },
+        error:function (err) {
+            alert("Error")
+            console.log(err)
+        }
+    })
+}
+
+function shenheReject() {
+    $("#shenhePage").modal('hide');
+    $("#tuihuiPage").modal('show');
+    var id = $("#id").val();
+    $.ajax({
+        url:'p_hand_in/applyReject',
+        type:'post',
+        data:{id:id},
+        dataType:'json',
+        async:false,
+        success:function (data) {
+            if (data){
+                alert("成功退回")
+            }
+        }
+    })
+}
+
+function shenhePass() {
+    var id = $("#id").val();
+    $.ajax({
+        url:'p_hand_in/applyPass',
+        type:'post',
+        data:{id:id},
+        dataType:'json',
+        async:false,
+        success:function (data) {
+            if (data){
+                alert("审核成功");
+            }
+        }
+    })
+}
+
 
 
 // function find_PHandIn_Only_page2() {

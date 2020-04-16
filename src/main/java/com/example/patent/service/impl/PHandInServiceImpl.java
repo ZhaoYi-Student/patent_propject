@@ -74,4 +74,24 @@ public class PHandInServiceImpl implements PHandInService {
         pHandIn.setPFile(fileById);
         return pHandIn;
     }
+
+    @Override
+    public PHandIn findShenheContent(Long id) {
+        PHandIn pHandIn = pHandInMapper.findShenheContent(id);
+        PDept deptById = pDeptMapper.findDeptById(pHandIn.getDeptId());
+        PUser userById = pUserMapper.findUserById(pHandIn.getHandInApplicant());
+        pHandIn.setPDept(deptById);
+        pHandIn.setPUser(userById);
+        return pHandIn;
+    }
+
+    @Override
+    public Boolean applyReject(Long id) {
+        return pHandInMapper.applyReject(id);
+    }
+
+    @Override
+    public Boolean applyPass(Long id) {
+        return pHandInMapper.applyPass(id);
+    }
 }
