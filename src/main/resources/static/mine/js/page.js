@@ -165,6 +165,12 @@ function FindByIdAll(id) {
             $("#shijian").val(data.handInTime);
             $("#jiaodishu").val(data.handInName);
             $("#bumen").val(data.pdept.deptName);
+            $("#shenqingren").val(data.puser.realName);
+            $("#wenjianming").val(data.pfile.fileName);
+            $("#jindu").val(data.handInSchedule);
+            $("#shenqingcishu").val(data.handInFrequency);
+            $("#zhuguanyijian").val(data.supervisorOpinion);
+            $("#jishufuzerenyijian").val(data.technicalPersonOpinion);
             ;
 
         }

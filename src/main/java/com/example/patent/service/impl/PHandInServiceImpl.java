@@ -65,9 +65,13 @@ public class PHandInServiceImpl implements PHandInService {
     @Override
     public PHandIn FindByIdAll(Long id) {
         PHandIn pHandIn = pHandInMapper.FindByIdAll(id);
-
+        PUser userById = pUserMapper.findUserById(pHandIn.getHandInApplicant());
+        PFile fileById = pFileMapper.findFileById(pHandIn.getFileId());
         PDept deptById = pDeptMapper.findDeptById(pHandIn.getDeptId());
+
         pHandIn.setPDept(deptById);
+        pHandIn.setPUser(userById);
+        pHandIn.setPFile(fileById);
         return pHandIn;
     }
 }
