@@ -209,8 +209,7 @@ function selectShenhe(id) {
 }
 
 function shenheReject() {
-    $("#shenhePage").modal('hide');
-    $("#tuihuiPage").modal('show');
+
     var id = $("#id").val();
     $.ajax({
         url:'p_hand_in/applyReject',
