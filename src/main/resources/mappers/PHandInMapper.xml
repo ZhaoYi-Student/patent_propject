@@ -122,11 +122,11 @@
     </select>
 
     <update id="applyReject">
-        UPDATE p_hand_in SET hand_in_audit_status=2 WHERE id=#{id}
+        UPDATE p_hand_in SET hand_in_audit_status=2, hand_in_process=hand_in_process-1  WHERE id=#{id}
     </update>
 
     <update id="applyPass">
-        UPDATE p_hand_in SET hand_in_audit_status=1 , hand_in_process=hand_in_process+1 WHERE id=#{id}
+        UPDATE p_hand_in SET hand_in_process=hand_in_process+1 WHERE id=#{id}
     </update>
 
 </mapper>
