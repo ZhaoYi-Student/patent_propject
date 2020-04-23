@@ -129,7 +129,7 @@ layui.use(['layer', 'form', 'element'], function () {
                 {
                     field: "", title: "操作", align: "center",
                     formatter: function (value, row, index) {
-                        return "<a href='javaScript:Weiqianpi(" + row.id + ")'>查看</a>";
+                        return "<a href='javaScript:FindByIdAll(" + row.id + ")'>查看</a>";
                     }
                 }
 
@@ -139,14 +139,66 @@ layui.use(['layer', 'form', 'element'], function () {
             },
         })
     }
-
-    // page_3的js
-    // 缴费通知
-
 });
 
+$(function () {
+    $("#dantiaoZhuanLi").hide();
+    findAll();
+});
 
+function FindByIdAll(id) {
 
+    $("#myModal").modal("show");
+    $.ajax({
+        url: "/p_hand_in/FindByIdAll",
+        type: "post",
+        dataType: "json",
+        data: {"id": id},
+        success: function (data) {
+            $("#bianhao").html(data.handInNo);
+            $("#famingren").html(data.handInInventor);
+            $("#shijian").html(data.handInTime);
+            $("#jiaodishu").html(data.handInName);
+            $("#bumen").html(data.pdept.deptName);
+            $("#shenqingren").html(data.puser.realName);
+            $("#wenjianming").html(data.pfile.fileName);
+            $("#jindu").html(data.handInSchedule);
+            $("#shenqingcishu").html(data.handInFrequency);
+            $("#zhuguanyijian").val(data.supervisorOpinion);
+            $("#jishufuzerenyijian").val(data.technicalPersonOpinion);
+            var process = data.handInProcess;
+            for (var a = 1; a <= process; a++) {
+                var backgroung_color = $("#process" + a + ">b>b");
+                var line_color = $("#process" + a + ">p");
+                var text = $("#process" + a + ">div");
+                backgroung_color.css("background", "#3c763d");
+                line_color.css("border", "1px dashed #3c763d")
+                text.css("color", "#3c763d");
+            }
+        }
+    })
+}
+
+// 进度
+function findAll() {
+    $.post({
+        url: "p_process/findAll",
+        success: function (data) {
+            var append = "";
+            for (var a = 0; a < data.length; a++) {
+                append += "<div class=\"s-step s-step" + a + "\" id='process" + data[a].id + "'>\n" +
+                    "                <b>\n" +
+                    "                    <b></b>\n" +
+                    "                </b>\n" +
+                    "                <p></p>\n" +
+                    "                <div>" + data[a].processName + "</div>\n" +
+                    "            </div>";
+            }
+            $("#process_image").html("");
+            $("#process_image").html(append);
+        }
+    }, "json");
+}
 
 
 

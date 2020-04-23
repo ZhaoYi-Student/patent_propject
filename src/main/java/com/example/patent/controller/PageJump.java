@@ -46,4 +46,9 @@ public class PageJump {
         return "page/add_hand_in";
     }
 
+    @RequestMapping("admin_info")
+    public String admin_info(){
+        return "admin_info";
+    }
+
 }

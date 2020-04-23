@@ -66,4 +66,67 @@
         #{handInApplicant},#{handInFrequency},#{handInProcess},#{deptId},#{fileId})
     </insert>
 
+
+    <select id="FindByIdAll" resultType="com.example.patent.entity.PHandIn">
+    select
+    id as 'id',
+    hand_in_name as 'handInName',
+    hand_in_inventor as 'handInInventor',
+    hand_in_no as 'handInNo',
+    hand_in_schedule as 'handInSchedule',
+    hand_in_auditor as 'handInAuditor',
+    hand_in_audit_information as 'handInAuditInformation',
+    hand_in_audit_status as 'handInAuditStatus',
+    hand_in_time as 'handInTime',
+    hand_in_importance_level as 'handInImportanceLevel',
+    hand_in_applicant as 'handInApplicant',
+    hand_in_frequency as 'handInFrequency',
+    hand_in_process as 'handInProcess',
+    p_t_s_id as 'pTSId',
+    p_t_s_end_id as 'pTSEndId',
+    supervisor_opinion as 'supervisorOpinion',
+    technical_person_opinion as 'technicalPersonOpinion',
+    dept_id as 'deptId',
+    file_id as 'fileId'
+    from p_hand_in
+    <where>
+        id = #{id}
+    </where>
+    </select>
+
+    <select id="findShenheContent" resultType="com.example.patent.entity.PHandIn">
+        select
+        id as 'id',
+        hand_in_name as 'handInName',
+        hand_in_inventor as 'handInInventor',
+        hand_in_no as 'handInNo',
+        hand_in_schedule as 'handInSchedule',
+        hand_in_auditor as 'handInAuditor',
+        hand_in_audit_information as 'handInAuditInformation',
+        hand_in_audit_status as 'handInAuditStatus',
+        hand_in_time as 'handInTime',
+        hand_in_importance_level as 'handInImportanceLevel',
+        hand_in_applicant as 'handInApplicant',
+        hand_in_frequency as 'handInFrequency',
+        hand_in_process as 'handInProcess',
+        p_t_s_id as 'pTSId',
+        p_t_s_end_id as 'pTSEndId',
+        supervisor_opinion as 'supervisorOpinion',
+        technical_person_opinion as 'technicalPersonOpinion',
+        dept_id as 'deptId',
+        file_id as 'fileId'
+        from p_hand_in
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <update id="applyReject">
+        UPDATE p_hand_in SET hand_in_audit_status=2 WHERE id=#{id}
+    </update>
+
+    <update id="applyPass">
+        UPDATE p_hand_in SET hand_in_audit_status=1 , hand_in_process=hand_in_process+1 WHERE id=#{id}
+    </update>
+
 </mapper>

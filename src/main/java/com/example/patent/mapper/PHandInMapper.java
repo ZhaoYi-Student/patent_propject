@@ -13,4 +13,12 @@ public interface PHandInMapper {
     int addHandIn(PHandIn pHandIn);
 
     List<PHandIn> PHandInList(PHandIn pHandIn);
+
+    PHandIn FindByIdAll(@Param("id") Long id);
+
+    PHandIn findShenheContent(@Param("id") Long id);
+
+    Boolean applyReject(@Param("id") Long id);
+
+    Boolean applyPass(Long id);
 }
