@@ -8,28 +8,51 @@ import com.example.patent.service.PPaymenyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PPaymentServiceImpl implements PPaymenyService {
 
+    private final PPaymentListMapper pPaymentListMapper;
+    private final PHandInMapper pHandInMapper;
+
     @Autowired
-    private PPaymentListMapper pPaymentListMapper;
-    @Autowired
-    private PHandInMapper pHandInMapper;
+    public PPaymentServiceImpl(PPaymentListMapper pPaymentListMapper, PHandInMapper pHandInMapper) {
+        this.pPaymentListMapper = pPaymentListMapper;
+        this.pHandInMapper = pHandInMapper;
+    }
 
     @Override
-    public List<PPaymentList> findAllByCondition() {
+    public List<PPaymentList> findAllByCondition(String handInName, String handInApplicant, String handInAuditor) throws InterruptedException {
 
-        List<PPaymentList> all = pPaymentListMapper.findAll();
+        Thread.sleep(1000);
+        List<PPaymentList> all1 = pPaymentListMapper.findAll();
+        List<PPaymentList> paymentLists = new ArrayList<>();
         PHandIn pHandIn = new PHandIn();
-        for (PPaymentList p:all
-             ) {
+        pHandIn.setHandInName(handInName);
+        pHandIn.setHandInAuditor(handInAuditor);
+
+        for (PPaymentList p : all1
+        ) {
             pHandIn.setId(p.getHandInId());
             List<PHandIn> pHandIns = pHandInMapper.PHandInList(pHandIn);
-            p.setPHandIn(pHandIns.get(0));
+            if (pHandIns != null && pHandIns.size() > 0) {
+                p.setPHandIn(pHandIns);
+            }
+            paymentLists.add(p);
         }
-        System.out.println(all);
-        return all;
+        System.out.println(paymentLists);
+        return paymentLists;
+    }
+
+    @Override
+    public Boolean addppayment(PPaymentList PPaymentList) {
+
+        int a=pPaymentListMapper.addppayment(PPaymentList);
+        if(a>0){
+            return true;
+        }
+        return false;
     }
 }

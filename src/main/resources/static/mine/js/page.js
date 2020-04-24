@@ -4,7 +4,7 @@ layui.use(['layer', 'form', 'element'], function () {
     var element = layui.element;
     var addHandIn = $("#addHandIn");
     var file = $('#file');
-    var handInNo = $("input[name=handInNo]");
+    var paymentNo = $("input[name=paymentNo]");
     var deptName1 = $("#dept_name1");
     var deptName2 = $("#dept_name2");
     var hand_in_name = $("#hand_in_name");
@@ -36,7 +36,7 @@ layui.use(['layer', 'form', 'element'], function () {
         $.post({
             url: "untils/getOrderIdByUUId",
             success: function (data) {
-                handInNo.val(data);
+                paymentNo.val(data);
             }
         }, "json");
     });

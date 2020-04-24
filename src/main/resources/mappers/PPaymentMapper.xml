@@ -4,7 +4,7 @@
 
     <select id="findAll" resultType="com.example.patent.entity.PPaymentList">
         select
-        id as 'id',
+        id,
         payment_createtime as 'paymentCreatetime',
         payment_expiration_date as 'paymentExpirationDate',
         payment_no as 'paymentNo',
@@ -13,6 +13,10 @@
         from p_payment_list
     </select>
 
-
-
+    <insert id="addppayment">
+        insert into p_payment_list
+        (payment_createtime, payment_expiration_date, payment_no,hand_in_id,payment_renewals)
+        values
+        (#{paymentCreatetime},#{paymentExpirationDate},#{paymentNo},#{handInId},#{paymentRenewals})
+    </insert>
 </mapper>

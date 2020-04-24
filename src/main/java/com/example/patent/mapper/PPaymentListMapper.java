@@ -10,4 +10,5 @@ public interface PPaymentListMapper {
 
     List<PPaymentList> findAll();
 
+    int addppayment(PPaymentList PPaymentList);
 }

@@ -3,31 +3,32 @@
 <head th:replace="header :: head"></head>
 <body>
 <div class="col-sm-12" style="padding: 30px 0 20px 0">
-    <form class="form-horizontal">
+    <div class="form-horizontal" id="form">
         <div class="form-group col-sm-3">
-            <label for="patent_name" class="control-label col-sm-4">专利名称：</label>
+            <label for="handInName" class="control-label col-sm-4">专利名称：</label>
             <div class="col-sm-8">
-                <input type="text" id="patent_name" name="patentName" placeholder="专利名称" class="form-control">
+                <input type="text" id="handInName" name="handInName" placeholder="专利名称" class="form-control">
             </div>
         </div>
         <div class="form-group col-sm-3">
-            <label for="inventor_name" class="control-label col-sm-4">申请人：</label>
+            <label for="handInApplicant" class="control-label col-sm-4">申请人：</label>
             <div class="col-sm-8">
-                <input type="text" id="inventor_name" name="inventorName" placeholder="申请人" class="form-control">
+                <input type="text" id="handInApplicant" name="handInApplicant" placeholder="申请人" class="form-control">
             </div>
         </div>
         <div class="form-group col-sm-3">
-            <label for="auditor_name" class="control-label col-sm-4">发明人：</label>
+            <label for="handInAuditor" class="control-label col-sm-4">发明人：</label>
             <div class="col-sm-8">
-                <input type="text" id="auditor_name" name="auditorName" placeholder="发明人" class="form-control">
+                <input type="text" id="handInAuditor" name="handInAuditor" placeholder="发明人" class="form-control">
             </div>
         </div>
 
         <div class=""></div>
         <div class="col-sm-12" style="margin-top: 20px;">
-            <button class="layui-btn layui-btn-fluid" style="margin: auto;" ONCLICK="chaxun()" type="button">查询</button>
+            <button class="layui-btn layui-btn-fluid" style="margin: auto;" ONCLICK="bootstrap()" type="button">查询
+            </button>
         </div>
-    </form>
+    </div>
 </div>
 <div class="col-sm-12">
     <div class="col-sm-1" style="padding: 0 0 10px 0">
@@ -35,7 +36,7 @@
     </div>
 </div>
 <div id="addHandInPage" class="modal fade">
-    <form id="addHandInForm" class="form-horizontal">
+    <div id="addHandInForm" class="form-horizontal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header center">
@@ -45,82 +46,184 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <input type="reset" id="reset" style="display: none">
-                    <div class="form-group">
-                        <label for="hand_in_name" class="control-label col-sm-3">专利名称:</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="hand_in_name" name="handInName" class="form-control" required
-                                   lay-verify="required">
+                    <form id="Pmy" method="post">
+                        <!--<input type="hidden" name="id" id="id">-->
+                        <input type="reset" id="reset" style="display: none">
+                        <div class="form-group">
+                            <label for="handInId" class="control-label col-sm-3">专利名称:</label>
+                            <div class="col-sm-8">
+                                    <!--<label for="userId">操作人:</label>-->
+                                    <select class="form-control" id="handInId" name="handInId"></select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hand_in_no" class="control-label col-sm-3">编号:</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="hand_in_no" name="handInNo" class="form-control" required
-                                   lay-verify="required" readonly>
+                        <div class="form-group">
+                            <label for="paymentNo" class="control-label col-sm-3">编号:</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="paymentNo" name="paymentNo" class="form-control" required
+                                       lay-verify="required" readonly>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hand_in_inventor" class="control-label col-sm-3">发明人:</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="hand_in_inventor" name="handInInventor" class="form-control"
-                                   required lay-verify="required">
+                        <!--<div class="form-group">
+                            <label for="hand_in_inventor" class="control-label col-sm-3">发明人:</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="hand_in_inventor" name="handInInventor" class="form-control"
+                                       required lay-verify="required">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hand_in_inventor" class="control-label col-sm-3">申请人:</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="hand_in_applicant" name="handInApplicant" class="form-control"
-                                   required lay-verify="required">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hand_in_inventor" class="control-label col-sm-3">续费时间:</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="payment_createtime" name="paymentExpirationDate" class="form-control"
-                                   required lay-verify="required">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hand_in_inventor" class="control-label col-sm-3">到期时间:</label>
-                        <div class="col-sm-8">
-                            <input type="text" id="payment_expiration_date" name="paymentExpirationDate" class="form-control"
-                                   required lay-verify="required">
-                        </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="hand_in_inventor" class="control-label col-sm-3">申请人:</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="hand_in_applicant" name="handInApplicant" class="form-control"
+                                       required lay-verify="required">
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label for="paymentCreatetime" class="control-label col-sm-3">续费时间:</label>
+                            <!--<div class="col-sm-8">
+                                <input type="text" id="paymentCreatetime" name="paymentCreatetime"
+                                       class="form-control"
+                                       required lay-verify="required">
+                            </div>-->
+                            <div class="col-sm-3">
 
+                                <input type="date" style="width:300px" class="form-control"
+                                       id="paymentCreatetime" name="paymentCreatetime">
+                            </div>
+                                    </div>
+                        <div class="form-group">
+                            <label for="paymentExpirationDate" class="control-label col-sm-3">到期时间:</label>
+                            <!--<div class="col-sm-8">
+                                <input type="text" id="paymentExpirationDate" name="paymentExpirationDate"
+                                       class="form-control"
+                                       required lay-verify="required">
+                            </div>-->
+                            <div class="col-sm-3">
 
+                                <input type="date" style="width:300px" class="form-control"
+                                       id="paymentExpirationDate" name="paymentExpirationDate">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button class="layui-btn" lay-submit lay-filter="formDemo" ONCLICK="tianjia()">立即提交</button>
                     <button type="reset" style="display: none;">重置</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 <div></div>
 <div class="col-sm-12">
-    <table class="table table-bordered table-striped"></table>
+    <table class="table table-bordered table-striped" id="tablea">
+
+    </table>
 </div>
 <script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
-</body>
-</html>
 <script>
 
-    function chaxun(){
-        var patentName=$("#patentName").val();
-        var inventorName=$("#inventorName").val();
-        var auditorName=$("#auditorName").val();
-    $.ajax({
-        url:"${pageContext.request.contextPath}/p_payment_list/findAllByCondition",
-        data:{patentName:patentName,inventorName:inventorName,auditorName:auditorName},
-        dataType:"json",
-        type:"post",
-        success:function (data) {
-            
-        }
-    })
+    // function chaxun(){
+    //     var handInName=$("#handInName").val();
+    //     var handInApplicant=$("#handInApplicant").val();
+    //     var handInAuditor=$("#handInAuditor").val();
+    // $.ajax({
+    //     url:"/p_payment_list/findAllByCondition",
+    //     data:{handInName:handInName,handInApplicant:handInApplicant,handInAuditor:handInAuditor},
+    //     type:"post",
+    //     dataType:"json",
+    //     success:function (data) {
+    //         if(data){
+    //         for(var i=0;i<data.length;i++){
+    //         var ccc="<tr>" +
+    //                 "<td>"+data.paymentCreatetime+"</td>" +
+    //                 "<td>"+data.paymentExpirationDate+"</td>" +
+    //                 "<td>"+data.paymentNo+"</td>" +
+    //                 "<td>"+data.handInId+"</td>" +
+    //                 "<td>"+data.paymentRenewals+"</td>"+
+    //                 "</tr>"
+    //         }
+    //         $("#tablea").html(ccc);
+    //         }
+    //     }
+    // })
+    // }
+
+    function tianjia() {
+        alert($("#Pmy").serialize());
+        $.ajax({
+            url: "/p_payment_list/addPPayment",
+            data: $("#Pmy").serialize(),
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                if (data) {
+                    alert("cheng");
+                }
+            }
+        })
     }
 
+    function bootstrap() {
+        $("#tablea").bootstrapTable("destroy");
+        $("#tablea").bootstrapTable({
+            url: "/p_payment_list/findAllByCondition",//路径
+            method: "get", 			 //请求方式
+            cache: false,		    //关闭缓存
+            striped: true,        //是否有斑马线效果
+            pagination: true,      //开启分页
+            sortable: true,     //是否启用排序
+            sortOrder: "asc",   //排序的方式
+            sidePagination: "client", //client客户端分页,"server"服务端分页
+            clickToSelect: true,	 //设置复选框头
+
+            columns: [
+                {field: "paymentNo", title: "编号", align: "center"},
+                {
+                    title: "专利名称", align: "center",
+                    formatter: function (value, row, index) {
+                        var p = row.phandIn;
+                        return p[0].handInName;
+                    }
+                },
+                {
+                    title: "发明人", align: "center",
+                    formatter: function (value, row, index) {
+                        var p = row.phandIn;
+                        return p[0].handInInventor;
+                    }
+                },
+                {field: "paymentCreatetime", title: "续费日期", align: "center"},
+                {field: "paymentExpirationDate", title: "下次到期日期", align: "center"},
+                {
+                    field: "", title: "操作", align: "center",
+                    formatter: function (value, row, index) {
+                        console.log(row);
+                    }
+                }
+
+            ],
+            queryParams: function (params) {
+                return $("#form").serialize();
+            },
+        })
+    }
+
+    $(function () {
+        $.ajax({
+            url: "/p_hand_in/ShowTabHandAndMoHu",
+            method: "post",
+            dataType: "json",
+            success: function (data) {
+                $("#handInId").append("<option value='0'>请选择</option>")
+                if (null != data && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        $("#handInId").append("<option value='" + data[i].id + "'>" + data[i].handInName + "</option>")
+                    }
+                }
+            }
+        })
+    })
+
 </script>
+</body>
+</html>
