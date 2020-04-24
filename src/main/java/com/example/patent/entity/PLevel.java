@@ -8,6 +8,7 @@ public class PLevel {
   private long id;
   private String levelName;
   private String levelInfo;
+  private String process;
 
 
 }

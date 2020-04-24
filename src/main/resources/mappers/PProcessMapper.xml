@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3beichen@localhost.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.patent.mapper.PProcessMapper">
+    <select id="findAll" resultType="com.example.patent.entity.PProcess">
+        select
+        id as 'id',
+        process_name as 'processName',
+        process_info as 'processInfo'
+        from p_process
+    </select>
+</mapper>

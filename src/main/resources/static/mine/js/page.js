@@ -9,9 +9,7 @@ layui.use(['layer', 'form', 'element'], function () {
     var deptName2 = $("#dept_name2");
     var hand_in_name = $("#hand_in_name");
     var reset = $("#reset");
-
     ShowAllDept();
-
 
     /* 查询部门表所有信息*/
     function ShowAllDept() {
@@ -116,11 +114,22 @@ layui.use(['layer', 'form', 'element'], function () {
                 {field: "puser.realName", title: "申请人", align: "center"},
                 {field: "pdept.deptName", title: "部门", align: "center"},
                 {field: "handInTime", title: "申请时间", align: "center"},
-                {field: "handInAuditStatus", title: "目前状态", align: "center"},
+                {
+                    field: "handInAuditStatus", title: "目前状态", align: "center",
+                    formatter: function (value, row, index) {
+                        if (value === 0) {
+                            return "正在审核"
+                        } else if (value === 1) {
+                            return "审核通过"
+                        } else {
+                            return "驳回"
+                        }
+                    }
+                },
                 {
                     field: "", title: "操作", align: "center",
                     formatter: function (value, row, index) {
-                        return "<a href='javaScript:Weiqianpi(" + row.id + ")'>查看</a>";
+                        return "<a href='javaScript:FindByIdAll(" + row.id + ")'>查看</a>";
                     }
                 }
 
@@ -130,143 +139,65 @@ layui.use(['layer', 'form', 'element'], function () {
             },
         })
     }
-
-    auditList();
-
-    function auditList() {
-        $("#page2Table").bootstrapTable({
-            url: "p_hand_in/ShowTabHandAndMoHu",
-            method: 'post',// 提交方式
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",// 发送到服务器的编码类型
-            pageNumber: 1,
-            pageSize: 10,
-            sortName: 'id',
-            sortOrder: 'asc',
-            //height: $(window).height()/2,
-            pagination: true,// 开启分页
-            sidePagination: "client",// 分页方式 'client'为客户端分页
-            cache: false,// 是否使用缓存
-            columns: [
-                {
-                    field: 'id',// value值
-                    formatter: function (value, row, index) {
-                        return index + 1;
-                    }
-                },
-                {
-                    title: '专利名称',
-                    formatter: function (value, row, index) {
-                        return "<a href='/1/1?id=" + row.id + "'>" + row.handInName + "</a>"
-                    }
-                },
-                {
-                    title: '申请文件数',
-                    formatter: function (value, row, index) {
-                        return "<a href='/1/1?id=" + row.id + "'>" + row.handInFrequency + "</a>"
-                    }
-                },
-                {
-                    field: 'handInInventor',
-                    title: '发明人'
-                },
-                {
-                    field: 'puser.realName',
-                    title: '申请人'
-                },
-                {
-                    field: 'pdept.deptName',
-                    title: '部门'
-                },
-                {
-                    field: 'handInTime',
-                    title: '申请时间'
-                },
-                {
-                    title: '目前状态',
-                    formatter: function (value, row, index) {
-                        if (row.handInAuditStatus==0) {
-                            return "待审核"
-                        }
-                        if (row.handInAuditStatus==1) {
-                            return "审核通过"
-                        }
-                        if (row.handInAuditStatus==2) {
-                            return "审核驳回"
-                        }
-                    }
-                },
-                {
-                    title: '操作',
-                    formatter: function (value, row, index) {
-                        return "<input value='审核' type='button'>";
-                    }
-                }
-            ]
-        });
-        //申请人下拉框
-        $.ajax({
-            url:"UserCon/fingHandInApplicant_page2",
-            type:"post",
-            dataType:"json",
-            data:{},
-            success:function(data){
-                $(data).each(function(a,b){
-                    $("#handInApplicant").append("<option value='"+b.id+"'>"+b.realName+"</option>");
-                })
-            }
-        })
-        //部门下拉框
-        $.ajax({
-            url:"DeptCon/ShowDeptName",
-            type:"post",
-            dataType:"json",
-            data:{},
-            success:function(data){
-                $(data).each(function(a,b){
-                    $("#dept_name").append("<option value='"+b.id+"'>"+b.deptName+"</option>");
-                })
-            }
-        })
-    }
-
-
 });
 
-function find_PHandIn_Only_page2() {
-    var handInName=$("#handInName").val();
-    var handInApplicant=$("#handInApplicant").val();
-    var handInInventor=$("#handInInventor").val();
-    var dept_name=$("#dept_name").val();
+$(function () {
+    $("#dantiaoZhuanLi").hide();
+    findAll();
+});
+
+function FindByIdAll(id) {
+
+    $("#myModal").modal("show");
     $.ajax({
-        url:"p_hand_in/ShowTabHandAndMoHu",
-        type:"post",
-        dataType:"json",
-        data:{
-            handInName:handInName,handInApplicant:handInApplicant,handInInventor:handInInventor,deptId:dept_name
-        },
-        success:function(data){
-            $("#page2Table").bootstrapTable('load',data);
+        url: "/p_hand_in/FindByIdAll",
+        type: "post",
+        dataType: "json",
+        data: {"id": id},
+        success: function (data) {
+            $("#bianhao").html(data.handInNo);
+            $("#famingren").html(data.handInInventor);
+            $("#shijian").html(data.handInTime);
+            $("#jiaodishu").html(data.handInName);
+            $("#bumen").html(data.pdept.deptName);
+            $("#shenqingren").html(data.puser.realName);
+            $("#wenjianming").html(data.pfile.fileName);
+            $("#jindu").html(data.handInSchedule);
+            $("#shenqingcishu").html(data.handInFrequency);
+            $("#zhuguanyijian").val(data.supervisorOpinion);
+            $("#jishufuzerenyijian").val(data.technicalPersonOpinion);
+            var process = data.handInProcess;
+            for (var a = 1; a <= process; a++) {
+                var backgroung_color = $("#process" + a + ">b>b");
+                var line_color = $("#process" + a + ">p");
+                var text = $("#process" + a + ">div");
+                backgroung_color.css("background", "#3c763d");
+                line_color.css("border", "1px dashed #3c763d")
+                text.css("color", "#3c763d");
+            }
         }
     })
 }
 
-function table_status() {
-    var handInName=$("#handInName").val();
-    var handInApplicant=$("#handInApplicant").val();
-    var handInInventor=$("#handInInventor").val();
-    var dept_name=$("#dept_name").val();
-    var page2_status=$("#page2_status").val();
-    $.ajax({
-        url:"p_hand_in/ShowTabHandAndMoHu",
-        type:"post",
-        dataType:"json",
-        data:{
-            handInName:handInName,handInApplicant:handInApplicant,handInInventor:handInInventor,deptId:dept_name
-        },
-        success:function(data){
-            $("#page2Table").bootstrapTable('load',data);
+// 进度
+function findAll() {
+    $.post({
+        url: "p_process/findAll",
+        success: function (data) {
+            var append = "";
+            for (var a = 0; a < data.length; a++) {
+                append += "<div class=\"s-step s-step" + a + "\" id='process" + data[a].id + "'>\n" +
+                    "                <b>\n" +
+                    "                    <b></b>\n" +
+                    "                </b>\n" +
+                    "                <p></p>\n" +
+                    "                <div>" + data[a].processName + "</div>\n" +
+                    "            </div>";
+            }
+            $("#process_image").html("");
+            $("#process_image").html(append);
         }
-    })
+    }, "json");
 }
 
 

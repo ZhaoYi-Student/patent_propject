@@ -20,4 +20,10 @@ public class PFileServiceImpl implements PFileService {
         }
         return false;
     }
+
+    @Override
+    public PFile findFileById(Long id) {
+
+        return pFileMapper.findFileById(id);
+    }
 }

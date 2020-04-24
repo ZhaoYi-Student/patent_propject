@@ -6,4 +6,6 @@ public interface PFileService {
 
     Boolean addFile(PFile pFile);
 
+    PFile findFileById(Long id);
+
 }

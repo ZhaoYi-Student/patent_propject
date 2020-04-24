@@ -4,6 +4,7 @@
 <body>
 <div class="col-sm-12" style="padding: 30px 0 20px 0">
     <form id="auditForm" class="form-horizontal">
+        <input type="hidden" id="level_id" th:value="${session.userInfo.getLevel()}">
         <div class="form-group col-sm-3">
             <label for="handInName" class="control-label col-sm-3">专利名称：</label>
             <div class="col-sm-8">
@@ -13,8 +14,7 @@
         <div class="form-group col-sm-3">
             <label for="handInApplicant" class="control-label col-sm-3">申请人：</label>
             <div class="col-sm-8">
-                <select id="handInApplicant" class="form-control">
-                    <option class="form-control" value="0">---请选择---</option>
+                <select id="handInApplicant" class="form-control" lay-verify="" lay-search>
                 </select>
             </div>
         </div>
@@ -34,17 +34,87 @@
         </div>
         <div class="form-group col-sm-1">
             <div class="col-sm-12">
-                <input class="layui-btn layui-btn-fluid" style="margin: auto;" type="button" value="查询" onclick="find_PHandIn_Only_page2()"/>
+                <input class="layui-btn layui-btn-fluid" style="margin: auto;" type="button" value="查询" id="inquire"/>
             </div>
         </div>
     </form>
 </div>
-<select id="page2_status" class="form-control" style="width: 130px" onblur="table_status()">
-    <option value="0" selected>待审核</option>
-    <option value="1">审核通过
+<select id="page2_status" class="form-control" style="width: 130px">
+    <option value="0" th:if="${session.userInfo.getLevel()!=1}" selected>待审核</option>
+    <option value="1">审核通过</option>
     <option value="2">审核退回</option>
 </select>
+<div id="downloadFile" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                查看文件
+            </div>
+            <div class="modal-body">
+                <p id="fileDownloadName">
+                </p>
+                <input type="hidden" id="filePath">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="layui-btn layui-btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="shenhePage" class="modal fade">
+    <form id="shenheForm" class="form-horizontal" enctype="multipart/form-data">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" th:if="${session.userInfo.getLevel()==2}">审核</h4>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="reset" id="reset" style="display: none">
+                    <input type="hidden" name="id" id="id" style="display: none">
+                    <div class="form-group">
+                        <label for="hand_in_no" class="control-label col-sm-3">编号:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="hand_in_no" name="handInNo" class="form-control" required
+                                   lay-verify="required" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hand_in_name" class="control-label col-sm-3">交底书名称:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="hand_in_name" name="handInName" class="form-control" required
+                                   lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hand_in_applicant" class="control-label col-sm-3">递交人:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="hand_in_applicant" name="handInApplicant" class="form-control"
+                                   required lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dept_name2" class="control-label col-sm-3">部门：</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="dept_name2" name="deptId" class="form-control"
+                                   required lay-verify="required">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="layui-btn" lay-submit onclick="shenhePass()">通过</button>
+                    <button class="layui-btn" lay-submit onclick="shenheReject()">退回</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table id="fileTab"></table>
 <table id="page2Table"></table>
-<script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
+<script type="text/javascript" th:src="@{/static/mine/js/page_2.js}"></script>
 </body>
 </html>

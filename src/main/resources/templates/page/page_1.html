@@ -1,6 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head"></head>
+<!--进度条样式-->
+<style>
+    #hz {
+        width: 100%;
+    }
+
+    #hz div {
+        margin-top: 30px;
+    }
+
+    .order_status {
+        text-align: center;
+    }
+
+    .order_status .s-step {
+        float: left;
+        width: 140px;
+        height: 60px;
+        position: relative;
+    }
+
+    .order_status .s-step:nth-child(5n) {
+        width: 0px;
+    }
+
+    .order_status .s-step.active {
+        float: left;
+        width: 170px;
+        height: 60px;
+        position: relative;
+    }
+
+    .order_status .s-step > b > b.active {
+        background-color: #337ab7
+    }
+
+    .order_status .s-step > b {
+        display: block;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 32px;
+        position: absolute;
+        margin-left: -16px;
+        top: -20px;
+        z-index: 87
+    }
+
+    .order_status .s-step > b > b {
+        display: block;
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        border-radius: 26px;
+        background: #ccc;
+        margin-left: 3px;
+        z-index: 88
+    }
+
+    .order_status .s-step > p {
+        width: 161px;
+        border: 1px dashed #ddd;
+        top: -8px;
+        position: absolute;
+        z-index: 86
+    }
+
+    .order_status .s-step > p.active {
+        width: 161px;
+        border: 1px dashed #337ab7;
+        top: -8px;
+        position: absolute;
+        z-index: 86
+    }
+
+    .order_status .s-step em {
+        display: block;
+        padding-top: 20px;
+        font-style: normal;
+        text-align: center;
+        color: #b7b7b7;
+        font-size: 12px;
+        margin-left: -65px;
+        width: 130px
+    }
+
+    .order_status .s-step > div {
+        display: block;
+        width: 80px;
+        height: 32px;
+        line-height: 32px;
+        position: absolute;
+        margin-left: -40px;
+        top: -85px;
+        z-index: 87;
+        text-align: center;
+        font-size: 12px;
+        color: #c9c4c4
+    }
+
+    .order_status .active {
+        display: block;
+        width: 80px;
+        height: 32px;
+        line-height: 32px;
+        position: absolute;
+        margin-left: -40px;
+        top: 55px;
+        z-index: 87;
+        text-align: center;
+        font-size: 12px;
+        color: rgba(13, 117, 38, 0.92)
+    }
+</style>
 <body>
 <div class="col-sm-12" style="padding: 30px 0 20px 0">
     <form class="form-horizontal" id="selectItem">
@@ -89,7 +203,7 @@
                                 <img th:src="@{/static/mine/images/document_upload.png}" alt=""
                                      style="width: 40px;cursor: pointer;">
                             </label>
-                            <input type="file" id="file" name="file" required lay-verify="required"
+                            <input type="file" id="file" required lay-verify="required"
                                    style="display: none;">
                         </div>
                     </div>
@@ -106,8 +220,58 @@
 <div class="col-sm-12">
     <table id="PHandInListId" class="table"></table>
 </div>
-<script type="text/javascript" th:src="@{/static/mine/js/page.js}">
+<div style="height: 200px"></div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" style="width: 1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="findAll();">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    专利信息详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div id="hz">
+                    <div class="col-sm-4">
+                        <label class="col-sm-5">交底书编号:</label><span id="bianhao" class="col-sm-7"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-4">发明人:</label><span id="famingren" class="col-sm-8"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-5">时间:</label><span id="shijian" class="col-sm-7"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-4">文件名:</label><span id="wenjianming" class="col-sm-8"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-6">申请次数:</label><span id="shenqingcishu" class="col-sm-6"></span>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-2">技术负责人意见:</label><textarea id="jishufuzerenyijian" placeholder="技术负责人意见"
+                                                                          class="col-sm-10 layui-textarea"></textarea>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-2">主观意见:</label><textarea id="zhuguanyijian" placeholder="主观意见"
+                                                                       class="col-sm-10 layui-textarea"></textarea>
+                    </div>
+                    <!--进度条-->
+                    <div class="col-sm-12">
+                        <div class="order_status" id="process_image">
 
-</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="display: none;">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript" th:src="@{/static/mine/js/page.js}"></script>
 </body>
 </html>
